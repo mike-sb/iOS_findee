@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>1000063811555-i31blfn01q6ggqrsqd1m23t3cm2bbjh1.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.1000063811555-i31blfn01q6ggqrsqd1m23t3cm2bbjh1</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBePP0Tf5re8Y5oluyFsMtd1ykk5xl3Foo</string>
+	<key>GCM_SENDER_ID</key>
+	<string>1000063811555</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>findee.ru</string>
+	<key>PROJECT_ID</key>
+	<string>findee-32534</string>
+	<key>STORAGE_BUCKET</key>
+	<string>findee-32534.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false/>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false/>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true/>
+	<key>IS_GCM_ENABLED</key>
+	<true/>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true/>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:1000063811555:ios:75b6def3f44ecf647eaad6</string>
+	<key>DATABASE_URL</key>
+	<string>https://findee-32534.firebaseio.com</string>
+</dict>
+</plist>
