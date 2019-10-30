@@ -10,8 +10,9 @@ import Foundation
 import UIKit
 import Firebase
 
-class SpecialistCellModel: UITableViewCell{
+class SpecialistCellModel: UICollectionViewCell{
     
+      static let reuseID = "SpecialistCellModel"
     @IBOutlet weak var profileImg: UIImageView!
     @IBOutlet weak var namesLabel: UILabel!
     @IBOutlet weak var categoryLabel: UILabel!

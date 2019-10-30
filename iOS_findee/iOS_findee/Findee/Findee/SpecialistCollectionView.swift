@@ -10,8 +10,8 @@ import UIKit
 
 class SpecialistCollectionView: UICollectionView, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-    let cells = [SpecialistModel]()
-    let customIdentifier = "SpecialistCellModel"
+    var cells = [SpecialistModel]()
+    let customIdentifier = "SpecialistCell"
     
     init()
     {
@@ -22,19 +22,44 @@ class SpecialistCollectionView: UICollectionView, UICollectionViewDelegate, UICo
         dataSource = self
         backgroundColor = .white
  translatesAutoresizingMaskIntoConstraints = false
-    register(SpecialistCollectionViewCell.self, forCellWithReuseIdentifier: SpecialistCollectionViewCell.reuseID)
+   // register(SpecialistCollectionViewCell.self, forCellWithReuseIdentifier: SpecialistCollectionViewCell.reuseID)
   
-        //register(UINib.init(nibName: customIdentifier, bundle: nil), forCellWithReuseIdentifier: SpecialistCollectionViewCell.reuseID)
+        register(UINib.init(nibName: customIdentifier, bundle: nil), forCellWithReuseIdentifier: SpecialistCellModel.reuseID)
         
     }
     
+    
+    func set(cells: [SpecialistModel])
+    {
+     self.cells = cells
+    }
+    
+    
+    /*
+     //otobrazhenie yacheek(zagruzka dannih)
+     func collectionView(_ collectionView: UICollectionView, cellForRowAt indexPath: IndexPath) -> UICollectionViewCell {
+     let cell = SpecCollectionView.dequeueReusableCell(withReuseIdentifier: "SpecialistCellModel", for: indexPath) as! SpecialistCellModel
+     cell.namesLabel.text =
+     
+     return cell
+     }
+     
+     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+     return 0 //posts.count
+     }     */
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10//cells.count
+        return cells.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = dequeueReusableCell(withReuseIdentifier: SpecialistCollectionViewCell.reuseID, for: indexPath) //as! SpecialistCollectionViewCell
-       // cell.imageViewCell.image = cells[indexPath.row].img
+        let cell = dequeueReusableCell(withReuseIdentifier: SpecialistCellModel.reuseID, for: indexPath) as! SpecialistCellModel
+        
+        cell.profileImg.image = cells[indexPath.row].img
+        cell.categoryLabel.text = cells[indexPath.row].category
+        cell.namesLabel.text = cells[indexPath.row].lname + " " +  cells[indexPath.row].fname + " " + cells[indexPath.row].oname
+        cell.feedbackCount.text = cells[indexPath.row].feedback
+        
         return cell
     }
     

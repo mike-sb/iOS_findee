@@ -37,20 +37,12 @@ class MainPageViewController: UIViewController {
         searchField.layer.zPosition = 1
           print(SpecCollectionView.layer.zPosition)
         
-    }
-    
-    
-    //otobrazhenie yacheek(zagruzka dannih)
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "SpecialistCellModel", for: indexPath) as! SpecialistCellModel
-        //cell.postTitle.text = posts[indexPath.row].title
+        SpecCollectionView.set(cells: SpecialistModel.fetchModel())
         
-        return cell
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0 //posts.count
-    }
+    
+   
 
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
