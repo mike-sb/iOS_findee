@@ -9,9 +9,13 @@
 import Foundation
 
 import UIKit
-
+import Firebase
+import FirebaseDatabase
+ //var ref: DatabaseReference!
+ // var ref: DatabaseReference! = Database.database().reference()
 struct SpecialistModel {
-    
+  
+  
     var job: String
     var rating: Double
     var img: UIImage
@@ -22,17 +26,34 @@ struct SpecialistModel {
     var oname: String
     var category: String
     var feedback: String
-    
-   static func fetchModel() -> [SpecialistModel]
-    {
-        let first =  SpecialistModel(job: "Advocat", rating: 5, img: UIImage(named: "Adv1")!,description: " ", price: "",fname: "Mihail", lname: "Novikov", oname: "Dm", category: "advocat", feedback: "0")
-        
-        let second =  SpecialistModel(job: "Advocat", rating: 5, img: UIImage(named: "Adv1")!,description: " ", price: "",fname: "first", lname: "second", oname: "third", category: "advocat2", feedback: "0")
-        
-        let third =  SpecialistModel(job: "Advocat", rating: 5, img: UIImage(named: "Adv1")!,description: " ", price: "",fname: "first2", lname: "second2", oname: "third2", category: "advocat3", feedback: "0")
-
-        return [first, second, third]
+    var email: String
+    var type = "specialist"
+   
+  /*  func fetchAuthUser() {
+        //authorized user
+        let userID = Firebase.Auth.auth().currentUser?.uid
+        ref.child("users").child(userID!).observeSingleEvent(of: .value, with: {(snapshot) in
+            let val = snapshot.value as? NSDictionary
+            
+            job = val?[""] as? String ?? " ")
+            
+            self.rating = val?[""] as? Double ?? 0
+            self.img = val?[""] as? UIImage ?? UIImage(named: "Adv1")!
+            self.description = val?[""] as? String ?? " "
+            self.price = val?[""] as? String ?? " "
+            self.fname = val?[""] as? String ?? " "
+            self.lname = val?[""] as? String ?? " "
+            self.oname = val?[""] as? String ?? " "
+            self.category = val?[""] as? String ?? " "
+            self.feedback = val?[""] as? String ?? " "
+            
+        }){(error) in
+            print(error.localizedDescription)
+        }
+       
         
     }
+    */
+    
     
 }

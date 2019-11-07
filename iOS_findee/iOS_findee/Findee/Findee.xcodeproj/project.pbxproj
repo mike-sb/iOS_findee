@@ -7,11 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		874C36FA2354E33D00CBE2F3 /* DataBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874C36F92354E33D00CBE2F3 /* DataBase.swift */; };
+		871B69762372E16700D995B2 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871B69752372E16700D995B2 /* NetworkManager.swift */; };
 		87E321C423679D2E00ECF1C9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 87E321C323679D2E00ECF1C9 /* GoogleService-Info.plist */; };
 		87E321C623679D6300ECF1C9 /* MainPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87E321C523679D6300ECF1C9 /* MainPage.storyboard */; };
 		87E321C823679E0700ECF1C9 /* SpecialistCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87E321C723679E0700ECF1C9 /* SpecialistCell.xib */; };
 		87E32BB2235DD4A800E41727 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E32BB1235DD4A800E41727 /* MainTabBarController.swift */; };
+		87E3343B23715AE300B66129 /* ClientCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87E3343A23715AE300B66129 /* ClientCell.xib */; };
 		87E36461234C9ACC00ADE4D2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E36460234C9ACC00ADE4D2 /* AppDelegate.swift */; };
 		87E36463234C9ACC00ADE4D2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E36462234C9ACC00ADE4D2 /* ViewController.swift */; };
 		87E36466234C9ACC00ADE4D2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87E36464234C9ACC00ADE4D2 /* Main.storyboard */; };
@@ -20,24 +21,27 @@
 		87E3646E234C9ACE00ADE4D2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87E3646C234C9ACE00ADE4D2 /* LaunchScreen.storyboard */; };
 		87E36478234C9C8600ADE4D2 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E36477234C9C8600ADE4D2 /* SignUpViewController.swift */; };
 		87E3647A234C9CAA00ADE4D2 /* MainPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E36479234C9CAA00ADE4D2 /* MainPageViewController.swift */; };
+		87E4144C2371C9B900D845E4 /* ClientCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E4144B2371C9B900D845E4 /* ClientCellModel.swift */; };
+		87E4144E2371CB8400D845E4 /* ClientModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E4144D2371CB8400D845E4 /* ClientModel.swift */; };
+		87E414502371D2C500D845E4 /* ClientCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E4144F2371D2C500D845E4 /* ClientCollectionView.swift */; };
 		87E48484234F318E0057BD2B /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E48483234F318E0057BD2B /* SettingsViewController.swift */; };
 		87E545BD2359C40D005EA410 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E545BC2359C40D005EA410 /* LoginViewController.swift */; };
 		87E6BDB5236824F900AFB390 /* SpecialistCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E6BDB4236824F900AFB390 /* SpecialistCellModel.swift */; };
 		87E6FE0D235A2BAD008960E9 /* LoginNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E6FE0C235A2BAD008960E9 /* LoginNavController.swift */; };
 		87E6FE11235A35DA008960E9 /* SpecialistCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E6FE10235A35DA008960E9 /* SpecialistCollectionView.swift */; };
 		87E6FE13235A3798008960E9 /* SpecialistModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E6FE12235A3798008960E9 /* SpecialistModel.swift */; };
-		87E6FE15235A3D42008960E9 /* SpecialistCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E6FE14235A3D42008960E9 /* SpecialistCollectionViewCell.swift */; };
 		8FBCDA482C1564BF14D3525F /* Pods_Findee.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D001EC3B40FDCD07ADAF5CDD /* Pods_Findee.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		4AC791F01F3BA72D85481EF1 /* Pods-Findee.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Findee.debug.xcconfig"; path = "Target Support Files/Pods-Findee/Pods-Findee.debug.xcconfig"; sourceTree = "<group>"; };
 		60FFAEC36B835B95A294E3A9 /* Pods-Findee.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Findee.release.xcconfig"; path = "Target Support Files/Pods-Findee/Pods-Findee.release.xcconfig"; sourceTree = "<group>"; };
-		874C36F92354E33D00CBE2F3 /* DataBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBase.swift; sourceTree = "<group>"; };
+		871B69752372E16700D995B2 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		87E321C323679D2E00ECF1C9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		87E321C523679D6300ECF1C9 /* MainPage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainPage.storyboard; sourceTree = "<group>"; };
 		87E321C723679E0700ECF1C9 /* SpecialistCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SpecialistCell.xib; sourceTree = "<group>"; };
 		87E32BB1235DD4A800E41727 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		87E3343A23715AE300B66129 /* ClientCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ClientCell.xib; path = /Users/mihail/Desktop/iOS_findee/iOS_findee/Findee/Findee/ClientCell.xib; sourceTree = "<absolute>"; };
 		87E3645D234C9ACC00ADE4D2 /* Findee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Findee.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		87E36460234C9ACC00ADE4D2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		87E36462234C9ACC00ADE4D2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -48,13 +52,15 @@
 		87E3646F234C9ACE00ADE4D2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		87E36477234C9C8600ADE4D2 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		87E36479234C9CAA00ADE4D2 /* MainPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageViewController.swift; sourceTree = "<group>"; };
+		87E4144B2371C9B900D845E4 /* ClientCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientCellModel.swift; sourceTree = "<group>"; };
+		87E4144D2371CB8400D845E4 /* ClientModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientModel.swift; sourceTree = "<group>"; };
+		87E4144F2371D2C500D845E4 /* ClientCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientCollectionView.swift; sourceTree = "<group>"; };
 		87E48483234F318E0057BD2B /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		87E545BC2359C40D005EA410 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		87E6BDB4236824F900AFB390 /* SpecialistCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialistCellModel.swift; sourceTree = "<group>"; };
 		87E6FE0C235A2BAD008960E9 /* LoginNavController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginNavController.swift; sourceTree = "<group>"; };
 		87E6FE10235A35DA008960E9 /* SpecialistCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialistCollectionView.swift; sourceTree = "<group>"; };
 		87E6FE12235A3798008960E9 /* SpecialistModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialistModel.swift; sourceTree = "<group>"; };
-		87E6FE14235A3D42008960E9 /* SpecialistCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialistCollectionViewCell.swift; sourceTree = "<group>"; };
 		D001EC3B40FDCD07ADAF5CDD /* Pods_Findee.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Findee.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -98,12 +104,10 @@
 				87E6FE0C235A2BAD008960E9 /* LoginNavController.swift */,
 				87E6FE10235A35DA008960E9 /* SpecialistCollectionView.swift */,
 				87E6FE12235A3798008960E9 /* SpecialistModel.swift */,
-				87E6FE14235A3D42008960E9 /* SpecialistCollectionViewCell.swift */,
 				87E48483234F318E0057BD2B /* SettingsViewController.swift */,
 				87E36479234C9CAA00ADE4D2 /* MainPageViewController.swift */,
 				87E32BB1235DD4A800E41727 /* MainTabBarController.swift */,
 				87E545BC2359C40D005EA410 /* LoginViewController.swift */,
-				874C36F92354E33D00CBE2F3 /* DataBase.swift */,
 				87E36460234C9ACC00ADE4D2 /* AppDelegate.swift */,
 				87E36462234C9ACC00ADE4D2 /* ViewController.swift */,
 				87E36464234C9ACC00ADE4D2 /* Main.storyboard */,
@@ -112,6 +116,11 @@
 				87E3646C234C9ACE00ADE4D2 /* LaunchScreen.storyboard */,
 				87E3646F234C9ACE00ADE4D2 /* Info.plist */,
 				87E36467234C9ACC00ADE4D2 /* Findee.xcdatamodeld */,
+				87E3343A23715AE300B66129 /* ClientCell.xib */,
+				87E4144B2371C9B900D845E4 /* ClientCellModel.swift */,
+				87E4144D2371CB8400D845E4 /* ClientModel.swift */,
+				87E4144F2371D2C500D845E4 /* ClientCollectionView.swift */,
+				871B69752372E16700D995B2 /* NetworkManager.swift */,
 			);
 			path = Findee;
 			sourceTree = "<group>";
@@ -196,6 +205,7 @@
 				87E3646E234C9ACE00ADE4D2 /* LaunchScreen.storyboard in Resources */,
 				87E321C423679D2E00ECF1C9 /* GoogleService-Info.plist in Resources */,
 				87E321C823679E0700ECF1C9 /* SpecialistCell.xib in Resources */,
+				87E3343B23715AE300B66129 /* ClientCell.xib in Resources */,
 				87E321C623679D6300ECF1C9 /* MainPage.storyboard in Resources */,
 				87E3646B234C9ACE00ADE4D2 /* Assets.xcassets in Resources */,
 				87E36466234C9ACC00ADE4D2 /* Main.storyboard in Resources */,
@@ -251,19 +261,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				87E6FE15235A3D42008960E9 /* SpecialistCollectionViewCell.swift in Sources */,
 				87E545BD2359C40D005EA410 /* LoginViewController.swift in Sources */,
 				87E3647A234C9CAA00ADE4D2 /* MainPageViewController.swift in Sources */,
 				87E6FE11235A35DA008960E9 /* SpecialistCollectionView.swift in Sources */,
 				87E36463234C9ACC00ADE4D2 /* ViewController.swift in Sources */,
+				871B69762372E16700D995B2 /* NetworkManager.swift in Sources */,
 				87E36461234C9ACC00ADE4D2 /* AppDelegate.swift in Sources */,
 				87E6FE13235A3798008960E9 /* SpecialistModel.swift in Sources */,
 				87E36469234C9ACC00ADE4D2 /* Findee.xcdatamodeld in Sources */,
 				87E6BDB5236824F900AFB390 /* SpecialistCellModel.swift in Sources */,
 				87E36478234C9C8600ADE4D2 /* SignUpViewController.swift in Sources */,
+				87E4144C2371C9B900D845E4 /* ClientCellModel.swift in Sources */,
+				87E414502371D2C500D845E4 /* ClientCollectionView.swift in Sources */,
 				87E32BB2235DD4A800E41727 /* MainTabBarController.swift in Sources */,
+				87E4144E2371CB8400D845E4 /* ClientModel.swift in Sources */,
 				87E48484234F318E0057BD2B /* SettingsViewController.swift in Sources */,
-				874C36FA2354E33D00CBE2F3 /* DataBase.swift in Sources */,
 				87E6FE0D235A2BAD008960E9 /* LoginNavController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

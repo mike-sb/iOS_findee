@@ -9,6 +9,10 @@
 import Foundation
 import UIKit
 import Firebase
+import FirebaseDatabase
+//var ref: DatabaseReference!
+var referen: DatabaseReference! = Database.database().reference()
+
 
 class SpecialistCellModel: UICollectionViewCell{
     
@@ -35,9 +39,15 @@ class SpecialistCellModel: UICollectionViewCell{
         namesLabel.text = model.lname + " " + model.fname + " " + model.oname
         categoryLabel.text = model.category
         feedbackCount.text = model.feedback
+        
+        ratingLabel.layer.zPosition=1
+        print("frame =/////////////////////////////// ")
+        print(ratingImg.frame)
     //    ratingImg.image =  getStars(rate: model.rating)
     }
-  
+   
+   
+    
     /*private func getStars(rate: Double) -> UIImage
     {
      let ImgRate: UIImage = UIImage
@@ -83,9 +93,25 @@ break
     }*/
     
     @IBAction func dialogDidTap(_ sender: Any) {
+        //goto dialog with specialist
     }
     
     @IBAction func profileDidTap(_ sender: Any) {
-    }
+       //goto profile of specialist
+        referen.child("findee-32534").observe(.childAdded, with: {(snapshot) in
+            let val = snapshot.value as? NSDictionary
+            var user = SpecialistModel(job: "", rating: 0, img: UIImage(named: "Adv1")!, description: "", price: "", fname: "", lname: "", oname: "", category: "", feedback: "", email: "", type: "specialist")
+            user.category = val?["category"] as? String ?? ""
+            user.description = val?["description"] as? String ?? ""
+            user.fname = val?["fname"] as? String ?? ""
+            user.lname = val?["lname"] as? String ?? ""
+            user.oname = val?["oname"] as? String ?? ""
+            user.price = val?["price"] as? String ?? ""
+            user.rating = val?["rating"] as? Double ?? 0
+            user.img = val?["img"] as? UIImage ?? UIImage(named: "Adv1")!
+            user.feedback = val?["feedback"] as? String ?? ""
+            user.job = val?["job"] as? String ?? ""
+           // self.users.append(user)
+        })    }
 }
 

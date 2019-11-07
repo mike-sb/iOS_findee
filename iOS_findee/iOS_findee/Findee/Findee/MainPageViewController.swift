@@ -7,49 +7,130 @@
 //
 
 import UIKit
-
+import Firebase
+import FirebaseAuth
+import FirebaseDatabase
+import FirebaseStorage
+//var ref: DatabaseReference!
+  
+var specs = [SpecialistModel]()
+var clients = [ClientModel]()
 class MainPageViewController: UIViewController {
     
     //masorny
-   
+    var userType: UserType = .specialist
+    
     @IBOutlet weak var findeeTabBarItem: UITabBarItem!
     
     @IBOutlet weak var searchField: UISearchBar!
     
+    @IBOutlet weak var findBtn: UIButton!
+    //view controllers
     private var SpecCollectionView = SpecialistCollectionView()
+    private var ClCollectionView = ClientCollectionView()
+    //networking
+    private var networkManager = NetworkManager()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        view.addSubview(SpecCollectionView)
+        
+      
+        //fetching specialist or/and users from DB
+        
+        switch (userType) {
+        case .specialist:
+            view.addSubview(SpecCollectionView)
+            
+            SpecCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+            
+            SpecCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+            
+            SpecCollectionView.topAnchor.constraint(equalTo: searchField.bottomAnchor , constant: 2).isActive = true
+            
+            SpecCollectionView.heightAnchor.constraint(equalToConstant: view.frame.height - searchField.frame.height - 20).isActive = true
+            
+            searchField.layer.zPosition = 1
+            networkManager.loadDataSpecialists { (specs) in
+                self.SpecCollectionView.reloadData()
+                if !specs.isEmpty{
+                    self.SpecCollectionView.reloadData()
+                    self.SpecCollectionView.set(cells: specs)
+                }
+                
+            }
+            break
+            
+        case .client:
+            break
+            view.addSubview(ClCollectionView)
+            
+            ClCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+            
+            ClCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+            
+            ClCollectionView.topAnchor.constraint(equalTo: searchField.bottomAnchor , constant: 2).isActive = true
+            
+            ClCollectionView.heightAnchor.constraint(equalToConstant: view.frame.height - searchField.frame.height - 20).isActive = true
+            searchField.isHidden = true
+            findBtn.isHidden = true
+            
+            
+            networkManager.loadDataClients { (users) in
+                self.ClCollectionView.reloadData()
+                if !users.isEmpty{
+                    
+                    
+                    self.ClCollectionView.reloadData()
+                    self.ClCollectionView.set(cells: users)
+                }
+                
+            }
+        case .admin://///vremenno
+            view.addSubview(SpecCollectionView)
+            
+            SpecCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+            
+            SpecCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+            
+            SpecCollectionView.topAnchor.constraint(equalTo: searchField.bottomAnchor , constant: 2).isActive = true
+            
+            SpecCollectionView.heightAnchor.constraint(equalToConstant: view.frame.height - searchField.frame.height - 20).isActive = true
+            
+            searchField.layer.zPosition = 1
+            networkManager.loadDataSpecialists { (specs) in
+                self.SpecCollectionView.reloadData()
+                if !specs.isEmpty{
+                    self.SpecCollectionView.reloadData()
+                    self.SpecCollectionView.set(cells: specs)
+                }
+                
+            }
+            break
+            
+        default:
+            print("failed")
+        }
+        
+        
+    
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-    view.addSubview(SpecCollectionView)
-       // view.frame = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 200)
-        SpecCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        
-        SpecCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        
- // SpecCollectionView.topAnchor.constraint(equalTo: searchField.bottomAnchor , constant: 120)
- 
-    //    SpecCollectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: 150)
-            SpecCollectionView.topAnchor.constraint(equalTo: searchField.bottomAnchor , constant: 2).isActive = true
-        
- SpecCollectionView.heightAnchor.constraint(equalToConstant: view.frame.height - searchField.frame.height - 20).isActive = true
-        
-        searchField.layer.zPosition = 1
-          print(SpecCollectionView.layer.zPosition)
-        
-        SpecCollectionView.set(cells: SpecialistModel.fetchModel())
-        
+       
     }
     
-    
    
-
     
+ 
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
     }
     
-
 }
 

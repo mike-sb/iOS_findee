@@ -60,6 +60,7 @@
                     <navigationItem key="navigationItem" id="zrY-kb-roZ"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="findBtn" destination="f8U-98-ORW" id="LlE-5h-v66"/>
                         <outlet property="findeeTabBarItem" destination="Q5S-V4-e18" id="ifv-N8-mWd"/>
                         <outlet property="searchField" destination="fyD-KP-QPU" id="zg0-qG-Kie"/>
                         <outlet property="tabBarItem" destination="Q5S-V4-e18" id="DpI-ge-Xph"/>

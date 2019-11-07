@@ -22,7 +22,7 @@ class SpecialistCollectionView: UICollectionView, UICollectionViewDelegate, UICo
         dataSource = self
         backgroundColor = .white
  translatesAutoresizingMaskIntoConstraints = false
-   // register(SpecialistCollectionViewCell.self, forCellWithReuseIdentifier: SpecialistCollectionViewCell.reuseID)
+
   
         register(UINib.init(nibName: customIdentifier, bundle: nil), forCellWithReuseIdentifier: SpecialistCellModel.reuseID)
         
@@ -35,18 +35,7 @@ class SpecialistCollectionView: UICollectionView, UICollectionViewDelegate, UICo
     }
     
     
-    /*
-     //otobrazhenie yacheek(zagruzka dannih)
-     func collectionView(_ collectionView: UICollectionView, cellForRowAt indexPath: IndexPath) -> UICollectionViewCell {
-     let cell = SpecCollectionView.dequeueReusableCell(withReuseIdentifier: "SpecialistCellModel", for: indexPath) as! SpecialistCellModel
-     cell.namesLabel.text =
-     
-     return cell
-     }
-     
-     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-     return 0 //posts.count
-     }     */
+  
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return cells.count
@@ -72,6 +61,7 @@ class SpecialistCollectionView: UICollectionView, UICollectionViewDelegate, UICo
         fatalError("init(coder:) has not been implemented")
     }
 }
+
 /*
 extension TableView: UITableViewDataSource {
     

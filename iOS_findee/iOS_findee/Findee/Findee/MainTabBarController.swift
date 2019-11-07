@@ -8,9 +8,18 @@
 
 import UIKit
 
+enum UserType {
+    case specialist
+    case client
+    case admin
+}
+
 class MainTabBarController: UITabBarController {
 
     @IBOutlet weak var tabBarFnd: UITabBar!
+    
+    var userType: UserType = .specialist
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 tabBarFnd.layer.zPosition = 1

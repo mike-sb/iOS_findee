@@ -148,7 +148,7 @@ class SignUpViewController: UIViewController {
                 }
                 else{
                     let db = Firestore.firestore()
-                    db.collection("users").addDocument(data: ["fname": fname  , "lname": lname, "password": password,"email":email, "org": "", "region": region!, "category": "", "type": "client", "uid": result!.user.uid])
+                    db.collection("users").addDocument(data: ["fname": fname  , "lname": lname, "password": password,"email":email, "region": region!, "type": "client", "uid": result!.user.uid])
                     {
                         (error) in
                         if (error != nil) {
@@ -205,7 +205,7 @@ class SignUpViewController: UIViewController {
                 }
                 else{
                     let db = Firestore.firestore()
-                    db.collection("users").addDocument(data: ["fname": fname!  , "lname": lname!, "password": password!,"email":email!, "org": org!, "region": region!, "category": category!, "type": "specialist", "uid": result!.user.uid])
+                    db.collection("specialists").addDocument(data: ["fname": fname!  , "lname": lname!, "password": password!,"email":email!, "org": org!, "region": region!, "category": category!, "type": "specialist", "uid": result!.user.uid])
                     {
                         (error) in
                         if (error != nil) {
