@@ -61,7 +61,7 @@
                                     <constraint firstItem="DXS-UF-lKN" firstAttribute="top" secondItem="YfL-UH-cqv" secondAttribute="top" constant="10" id="RRB-W0-2Nf"/>
                                     <constraint firstItem="KFh-BC-Oj3" firstAttribute="top" secondItem="DXS-UF-lKN" secondAttribute="bottom" constant="20" id="Ynz-OP-17l"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="Yuv-ce-sKz"/>
-                                    <constraint firstItem="t5G-Fo-cB5" firstAttribute="top" secondItem="KFh-BC-Oj3" secondAttribute="bottom" constant="20" id="eta-bF-7C4"/>
+                                    <constraint firstItem="t5G-Fo-cB5" firstAttribute="top" relation="greaterThanOrEqual" secondItem="KFh-BC-Oj3" secondAttribute="bottom" constant="20" id="eta-bF-7C4"/>
                                 </constraints>
                             </stackView>
                         </subviews>

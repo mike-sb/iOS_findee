@@ -53,8 +53,7 @@ class ClientCollectionView: UICollectionView, UICollectionViewDelegate, UICollec
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: frame.width, height: 200)
-    }
+        return CGSize(width: frame.width, height: 180)    }
     
     
     required init?(coder aDecoder: NSCoder) {

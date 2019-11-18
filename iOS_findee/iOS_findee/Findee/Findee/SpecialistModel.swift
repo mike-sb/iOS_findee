@@ -27,6 +27,7 @@ struct SpecialistModel {
     var category: String
     var feedback: String
     var email: String
+    var phone: String
     var type = "specialist"
    
   /*  func fetchAuthUser() {

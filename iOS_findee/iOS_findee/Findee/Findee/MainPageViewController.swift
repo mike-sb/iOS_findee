@@ -18,6 +18,7 @@ var clients = [ClientModel]()
 class MainPageViewController: UIViewController {
     
     //masorny
+
     var userType: UserType = .specialist
     
     @IBOutlet weak var findeeTabBarItem: UITabBarItem!
@@ -34,7 +35,7 @@ class MainPageViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         view.addSubview(SpecCollectionView)
-        
+        userType = (UserState.shared.type)!
       
         //fetching specialist or/and users from DB
         
@@ -55,6 +56,7 @@ class MainPageViewController: UIViewController {
                 self.SpecCollectionView.reloadData()
                 if !specs.isEmpty{
                     self.SpecCollectionView.reloadData()
+                    self.SpecCollectionView.reloadData()
                     self.SpecCollectionView.set(cells: specs)
                 }
                 
@@ -62,7 +64,7 @@ class MainPageViewController: UIViewController {
             break
             
         case .client:
-            break
+           
             view.addSubview(ClCollectionView)
             
             ClCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
@@ -86,6 +88,7 @@ class MainPageViewController: UIViewController {
                 }
                 
             }
+             break
         case .admin://///vremenno
             view.addSubview(SpecCollectionView)
             
@@ -101,6 +104,7 @@ class MainPageViewController: UIViewController {
             networkManager.loadDataSpecialists { (specs) in
                 self.SpecCollectionView.reloadData()
                 if !specs.isEmpty{
+                     self.SpecCollectionView.reloadData()
                     self.SpecCollectionView.reloadData()
                     self.SpecCollectionView.set(cells: specs)
                 }
@@ -124,8 +128,7 @@ class MainPageViewController: UIViewController {
     }
     
    
-    
- 
+
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.

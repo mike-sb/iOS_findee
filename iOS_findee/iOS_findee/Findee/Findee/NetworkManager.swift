@@ -39,7 +39,7 @@ final class NetworkManager{
                         print("\(document.documentID) => \(document.data())")
                         let val = document.data() as? NSDictionary
                         
-                        var user = SpecialistModel(job: "", rating: 0, img: UIImage(named: "Adv1")!, description: "", price: "", fname: "", lname: "", oname: "", category: "", feedback: "", email: "", type: "speciali")
+                        var user = SpecialistModel(job: "", rating: 0, img: UIImage(named: "Adv1")!, description: "", price: "", fname: "", lname: "", oname: "", category: "", feedback: "", email: "", phone: "", type: "speciali")
                         
                         user.category = val?["category"] as? String ?? ""
                         user.description = val?["description"] as? String ?? ""
@@ -75,7 +75,7 @@ final class NetworkManager{
             }
         }    }
     
-    func loadDataClients(complection: @escaping ([ClientModel])->Void){
+    func loadDataClients(completion: @escaping ([ClientModel])->Void){
         let conf = FirebaseService.shared.configure
         let db = Firestore.firestore()
         let storage = Storage.storage()
@@ -91,7 +91,7 @@ final class NetworkManager{
                         print("\(document.documentID) => \(document.data())")
                         let val = document.data() as? NSDictionary
                         
-                        var user = ClientModel(fname: "", lname: "", oname: "", question: "", img:  UIImage(named: "Adv1")!, email: "", type: "client")
+                        var user = ClientModel(fname: "", lname: "", oname: "", question: "", img:  UIImage(named: "Adv1")!, email: "", type: "client", phone: "")
                         
                         user.fname = val?["fname"] as? String ?? ""
                         user.lname = val?["lname"] as? String ?? ""
@@ -115,14 +115,227 @@ final class NetworkManager{
                         
                         clients.append(user)
                     }
-                    complection(users)
+                    completion(users)
                     
                 }
                 else{
-                    complection([])
+                    completion([])
                 }
             }
         }
     }
     
-  }
+    func loadProfileClients(completion: @escaping ([ClientModel])->Void){
+        let conf = FirebaseService.shared.configure
+        let db = Firestore.firestore()
+        let storage = Storage.storage()
+        db.collection("users").getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+                return
+            } else {
+                let users=[ClientModel]()
+                if !querySnapshot!.isEmpty {
+                    
+                    for document in querySnapshot!.documents {
+                        print("\(document.documentID) => \(document.data())")
+                        let val = document.data() as? NSDictionary
+                        
+                        var user = ClientModel(fname: "", lname: "", oname: "", question: "", img:  UIImage(named: "Adv1")!, email: "", type: "client", phone: "")
+                        
+                        user.fname = val?["fname"] as? String ?? ""
+                        user.lname = val?["lname"] as? String ?? ""
+                        user.oname = val?["oname"] as? String ?? ""
+                        user.question = val?["question"] as? String ?? ""
+                        user.email = val?["email"] as? String ?? ""
+                        //downloading img for profile
+               //         user.img =/* UIImage(named: val?["email"] ) ??*/ UIImage(named: "Adv1")!
+                        
+                        let pathRef = storage.reference(withPath: "images/\(val?["img"] ?? UIImage(named: "Adv1")!)")
+                         
+                         pathRef.getData(maxSize: 1 * 1024 * 1024) { data, error in
+                         if let error = error {
+                         print(error)
+                         } else {
+                         
+                         user.img = UIImage(data: data!) ?? UIImage(named: "Adv1")!
+                         }
+                         }
+                        
+                        
+                        clients.append(user)
+                    }
+                    completion(users)
+                    
+                }
+                else{
+                    completion([])
+                }
+            }
+        }
+    }
+    
+    func loadProfileSpecialists(email: String?, completion: @escaping (SpecialistModel) -> Void) {
+        let conf = FirebaseService.shared.configure
+        let db = Firestore.firestore()
+        let storage = Storage.storage()
+        db.collection("specialists").whereField("email", isEqualTo:  email).getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+                return
+            } else {
+                var spec = SpecialistModel(job: "", rating: 0, img: UIImage(named: "Adv1")!, description: "", price: "", fname: "", lname: "", oname: "", category: "", feedback: "", email: "", phone: "", type: "specialist")
+                if !querySnapshot!.isEmpty {
+                    
+                    for document in querySnapshot!.documents {
+                        print("\(document.documentID) => \(document.data())")
+                        let val = document.data() as? NSDictionary
+                        
+        
+                        
+                        spec.category = val?["category"] as? String ?? ""
+                        spec.description = val?["description"] as? String ?? ""
+                        spec.fname = val?["fname"] as? String ?? ""
+                        spec.lname = val?["lname"] as? String ?? ""
+                        spec.oname = val?["oname"] as? String ?? ""
+                        spec.price = val?["price"] as? String ?? ""
+                        spec.rating = val?["rating"] as? Double ?? 0
+                        spec.feedback = val?["feedback"] as? String ?? ""
+                        spec.job = val?["job"] as? String ?? ""
+                        spec.email = val?["email"] as? String ?? ""
+                        
+                        //downloading img for profile
+                        let pathRef = storage.reference(withPath: "images/\(val?["img"] ?? UIImage(named: "Adv1")!)")
+                        
+                        pathRef.getData(maxSize: 1 * 1024 * 1024) { data, error in
+                            if let error = error {
+                                print(error)
+                            } else {
+                                // Data for "images/island.jpg" is returned
+                                spec.img = UIImage(data: data!) ?? UIImage(named: "Adv1")!
+                            }
+                        }
+                        
+                    }
+                    completion(spec)
+                    
+                }
+                else{
+                    completion(SpecialistModel(job: "", rating: 0, img: UIImage(named: "Adv1")!, description: "", price: "", fname: "", lname: "", oname: "", category: "", feedback: "", email: "", phone: "", type: "specialist"))
+                }
+            }
+        }
+        
+    }
+    
+    func loadProfileClient(email: String?, completion: @escaping (ClientModel)->Void){
+        let conf = FirebaseService.shared.configure
+        let db = Firestore.firestore()
+        let storage = Storage.storage()
+        print("email in loader: \(email)")
+        db.collection("users").whereField("email", isEqualTo: email).getDocuments()  { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+                return
+            } else {
+               
+                var user = ClientModel(fname: "", lname: "", oname: "", question: "", img:  UIImage(named: "Adv1")!, email: "", type: "client", phone: "")
+                
+                if !querySnapshot!.isEmpty {
+                    
+                    for document in querySnapshot!.documents {
+                        print("\(document.documentID) => \(document.data())")
+                        let val = document.data() as? NSDictionary
+                        
+                        user.fname = val?["fname"] as? String ?? ""
+                        user.lname = val?["lname"] as? String ?? ""
+                        user.oname = val?["oname"] as? String ?? ""
+                        user.question = val?["question"] as? String ?? ""
+                        user.email = val?["email"] as? String ?? ""
+                        user.phone = val?["phone"] as? String ?? ""
+                        //downloading img for profile
+                        user.img =/* UIImage(named: val?["email"] ) ??*/ UIImage(named: "Adv1")!
+                        
+                        /*       let pathRef = storage.reference(withPath: "images/\(val?["img"] ?? UIImage(named: "Adv1")!)")
+                         
+                         pathRef.getData(maxSize: 1 * 1024 * 1024) { data, error in
+                         if let error = error {
+                         print(error)
+                         } else {
+                         
+                         user.img = UIImage(data: data!) ?? UIImage(named: "Adv1")!
+                         }
+                         }*/
+                        
+                        
+                    }
+                    completion(user)
+                    print("------here \(user)")
+                }
+                else{
+                    completion(
+                   ClientModel(fname: "", lname: "", oname: "", question: "", img:  UIImage(named: "Adv1")!, email: "", type: "client", phone: ""))
+                    
+                }
+            }
+        }
+    }
+    
+    
+    
+    
+    func saveProfileSpecialistChanges(email: String?, user: SpecialistModel,completion: @escaping (Bool) -> Void) {
+        let conf = FirebaseService.shared.configure
+        let db = Firestore.firestore()
+        let storage = Storage.storage()
+        db.collection("specialists").whereField("email", isEqualTo:  email).getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+                return
+            } else {
+                var spec = SpecialistModel(job: "", rating: 0, img: UIImage(named: "Adv1")!, description: "", price: "", fname: "", lname: "", oname: "", category: "", feedback: "", email: "", phone: "", type: "specialist")
+                if !querySnapshot!.isEmpty {
+                    let doc = querySnapshot!.documents.first
+                    doc?.reference.updateData(["fname":user.fname, "lname": user.lname, "oname": user.oname,"phone": user.phone,"description":user.description, "category":user.category])
+                    
+                    
+                    completion(true)
+                    print("changes saved")
+                }
+                else{
+                    completion(false)
+                    
+                }
+            }
+        }
+        
+    }
+    
+    func saveProfileClientChanges(email: String?,user: ClientModel, complection: @escaping (Bool)->Void){
+        let conf = FirebaseService.shared.configure
+        let db = Firestore.firestore()
+        let storage = Storage.storage()
+        db.collection("users").whereField("email", isEqualTo: email).getDocuments()  { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+                return
+            } else {
+                 if !querySnapshot!.isEmpty {
+                    let doc = querySnapshot!.documents.first
+                doc?.reference.updateData(["fname":user.fname, "lname": user.lname, "oname": user.oname,
+                                           "phone": user.phone])
+                
+                    
+                    complection(true)
+                    print("changes saved")
+                }
+                else{
+                    complection(false)
+                    
+                }
+            }
+        }
+    }
+    
+    
+}

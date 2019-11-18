@@ -19,5 +19,6 @@ struct ClientModel {
     var img: UIImage
     var email: String
   var type = "client"
+    var phone:String
     
 }

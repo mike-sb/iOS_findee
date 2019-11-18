@@ -18,8 +18,8 @@ class MainTabBarController: UITabBarController {
 
     @IBOutlet weak var tabBarFnd: UITabBar!
     
-    var userType: UserType = .specialist
-    
+   public var userType: UserType = .specialist
+ 
     override func viewDidLoad() {
         super.viewDidLoad()
 tabBarFnd.layer.zPosition = 1
@@ -27,6 +27,7 @@ tabBarFnd.layer.zPosition = 1
         tabBarFnd.backgroundColor = .white
         // Do any additional setup after loading the view.
     }
+ 
     
 
 }

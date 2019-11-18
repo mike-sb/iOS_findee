@@ -11,11 +11,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="SpecialistCellModel" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="233" id="M7K-vz-Lj0" customClass="SpecialistCellModel" customModule="Findee" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="233"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="SpecialistCellModel" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="201" id="M7K-vz-Lj0" customClass="SpecialistCellModel" customModule="Findee" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="201"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="M7K-vz-Lj0" id="Q3L-zD-TGq">
-                <rect key="frame" x="0.0" y="0.0" width="414" height="232.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="414" height="200.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" spacing="39" translatesAutoresizingMaskIntoConstraints="NO" id="QiF-Tu-pOJ">
@@ -138,7 +138,7 @@
                 <outlet property="ratingImg" destination="ewd-99-daD" id="COA-P9-UgQ"/>
                 <outlet property="ratingLabel" destination="TyZ-TA-CfV" id="6fR-Mg-Md6"/>
             </connections>
-            <point key="canvasLocation" x="292.75362318840581" y="-87.388392857142847"/>
+            <point key="canvasLocation" x="292.75362318840581" y="-98.102678571428569"/>
         </tableViewCell>
     </objects>
 </document>

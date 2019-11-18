@@ -100,7 +100,7 @@ break
        //goto profile of specialist
         referen.child("findee-32534").observe(.childAdded, with: {(snapshot) in
             let val = snapshot.value as? NSDictionary
-            var user = SpecialistModel(job: "", rating: 0, img: UIImage(named: "Adv1")!, description: "", price: "", fname: "", lname: "", oname: "", category: "", feedback: "", email: "", type: "specialist")
+            var user = SpecialistModel(job: "", rating: 0, img: UIImage(named: "Adv1")!, description: "", price: "", fname: "", lname: "", oname: "", category: "", feedback: "", email: "", phone: "", type: "specialist")
             user.category = val?["category"] as? String ?? ""
             user.description = val?["description"] as? String ?? ""
             user.fname = val?["fname"] as? String ?? ""
