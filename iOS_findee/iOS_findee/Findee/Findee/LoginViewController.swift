@@ -22,7 +22,7 @@ struct AllUsr {
     var specialist = [SpecialistModel]()
     var none:Bool = false
 }
-
+var all = AllUsr()
 class LoginViewController: UIViewController {
    
   
@@ -38,11 +38,6 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         errLabel.alpha = 0
-     
-        
-    }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         let app = UIApplication.shared.delegate as! AppDelegate
         
         let context = app.persistentContainer.viewContext
@@ -60,24 +55,33 @@ class LoginViewController: UIViewController {
                 
                 emailText.text = objectentity.login
                 passwordText.text = objectentity.password
-            
+                
                 UserState.shared.log = objectentity.login
-    
+                
                 UserState.shared.pas = objectentity.password
                 
-                var all = AllUsr()
                 var flag1 = false
                 var flag2 = false
+                //view.layer.layoutIfNeeded()
                 
+                let group = DispatchGroup()
+                
+                group.enter()
                 networkManager.loadDataClients{ (users) in
+                    self.view.layoutIfNeeded()
                     if(!users.isEmpty)
                     {
+                        group.leave()
                         all.client = users
                         print("trueeee: \(users)")
                         flag1 = true
+                        
                     }
                 }
+                
+                group.enter()
                 networkManager.loadDataSpecialists{ (specs) in
+                    group.leave()
                     self.view.layoutIfNeeded()
                     if(!specs.isEmpty)
                     {
@@ -87,31 +91,34 @@ class LoginViewController: UIViewController {
                     }
                     
                 }
-                print("users: \(all.client)")
-                print("specs: \(all.specialist)")
-                
-             /*   if flag1 || flag2{
-                let type = findType(specs: all.specialist, clients: all.client, email: objectentity.login!)
-                
-                print("searching type for profile: \(type)")
-                
-                if type == "admin" {
-                    UserState.shared.type = .admin
-                  
-                }
-                else if type == "client" {
-                  
-                    UserState.shared.type = .client
+               
+                group.notify(queue: .main) {
+                    print("users: \(all.client)")
+                    print("specs: \(all.specialist)")
                     
-                }
-                else {
-                    UserState.shared.type = .specialist
-                }
-                }*/
+                    let type =  objectentity.type
+                    
+                    print("searching type for profile: \(type)")
+                    print("compare: \(type=="admin")")
+                    
+                    if type == "admin" {
+                        UserState.shared.type = .admin
+                        
+                    }
+                    else if type == "client" {
+                        
+                        UserState.shared.type = .client
+                        
+                    }
+                    else {
+                        UserState.shared.type = .specialist
+                    }
                 
-                self.navToMainPageView(mail: emailText.text!)
                 
+                }
             }
+            self.navToMainPageView(mail: UserState.shared.log!)
+            
         }
             
         catch
@@ -119,6 +126,10 @@ class LoginViewController: UIViewController {
             let fetch_error = error as NSError
             print("error", fetch_error.localizedDescription)
         }
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+       
         
     }
     
@@ -164,6 +175,7 @@ class LoginViewController: UIViewController {
                 {
                     self.saveLog(mail: email, pass: password, type: self.findType(specs: specs, clients: clients, email: email))
                 }
+              
                 self.navToMainPageView(mail: email)
                 
             }
@@ -182,56 +194,54 @@ class LoginViewController: UIViewController {
             MainTabBarController else {
                 return
         }
+        let app = UIApplication.shared.delegate as! AppDelegate
         
-        var all = AllUsr()
-        var flag1 = false
-        var flag2 = false
+        let context = app.persistentContainer.viewContext
         
-        networkManager.loadDataClients{ (users) in
-            if(!users.isEmpty)
-            {
-            all.client = users
-                flag1 = true
-            }
-        }
-        networkManager.loadDataSpecialists{ (specs) in
-            if(!specs.isEmpty)
-            {
-            all.specialist = specs
-                flag2 = true
-            }
-            
-        }
-        if flag1 || flag2
+        let fetchrequest = NSFetchRequest<NSFetchRequestResult>(entityName: "LoginFindee")
+        
+        do
         {
-        let type = findType(specs: all.specialist, clients: all.client, email: mail)
+            
+            let result = try context.fetch(fetchrequest) as NSArray
+            
+            if result.count>0
+            {
+                let objectentity = result.firstObject as! LoginFindee
+                
+                let type = objectentity.type
+                    
+                    print("searching type fore profile: \(type)")
+                
+                if type == "admin" {
+                    UserState.shared.type = .admin
+                    mainNavigationVC.userType = .admin
+                    print("----type----: \(type)")
+                }
+                else if type == "client" {
+                    mainNavigationVC.userType = .client
+                    UserState.shared.type = .client
+                    print("----type----: \(type)")
+                    
+                }
+                else {
+                    mainNavigationVC.userType = .specialist
+                    UserState.shared.type = .specialist
+                    print("----type----: \(type)")
+                }
+                
+                print("UserStates:")
+                print(UserState.shared.log)
+                print(UserState.shared.pas)
+                print(UserState.shared.type)            }
+            
+        }
+        catch
+        {
+            let fetch_error = error as NSError
+            print("error", fetch_error.localizedDescription)
+        }
       
-            print("searching type fore profile: \(type)")
-            
-        if type == "admin" {
-            UserState.shared.type = .admin
-              mainNavigationVC.userType = .admin
-            print("----type----: \(type)")
-        }
-        else if type == "client" {
-              mainNavigationVC.userType = .client
-            UserState.shared.type = .client
-             print("----type----: \(type)")
-            
-        }
-        else {
-              mainNavigationVC.userType = .specialist
-            UserState.shared.type = .specialist
-             print("----type----: \(type)")
-            }
-      UserState.shared.pas = passwordText.text
-        UserState.shared.log = emailText.text
-          
-        }
-        print("UserStates:")
-        print(UserState.shared.log)
-        print(UserState.shared.pas)
-        print(UserState.shared.type)
         present(mainNavigationVC, animated: true, completion: nil)
         
     }

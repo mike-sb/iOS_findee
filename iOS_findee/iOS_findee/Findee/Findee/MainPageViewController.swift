@@ -53,15 +53,16 @@ class MainPageViewController: UIViewController {
             
             searchField.layer.zPosition = 1
             networkManager.loadDataSpecialists { (specs) in
-                self.SpecCollectionView.reloadData()
+             
                 if !specs.isEmpty{
-                    self.SpecCollectionView.reloadData()
-                    self.SpecCollectionView.reloadData()
-                    self.SpecCollectionView.set(cells: specs)
+                    DispatchQueue.main.async {
+                          self.SpecCollectionView.set(cells: specs)
+                          self.SpecCollectionView.reloadData()
+                    }
                 }
                 
             }
-            break
+            
             
         case .client:
            
@@ -88,7 +89,7 @@ class MainPageViewController: UIViewController {
                 }
                 
             }
-             break
+           
         case .admin://///vremenno
             view.addSubview(SpecCollectionView)
             
