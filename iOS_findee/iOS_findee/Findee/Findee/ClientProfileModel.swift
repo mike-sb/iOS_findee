@@ -35,8 +35,12 @@ class ClientProfileModel: UICollectionViewCell {
         phoneTxtbx.text = model.phone
         
     }
+    
+    @IBAction func ChangePhotoTapped(_ sender: Any) {
+        print("Change tapped")
+    }
     @IBAction func changesTapped(_ sender: Any) {
-        
+        print("tapped");
          var user = ClientModel(fname: fnameTxtbx.text!, lname: lnameTxtbx.text!, oname: patronTxtbx.text!, question: "", img:  profImg.image!, email: emailTxtbx.text!, type: "client", phone: phoneTxtbx.text!)
         print("changes tapped: \(user)")
         networkManager.saveProfileClientChanges(email: UserState.shared.log, user: user){

@@ -18,6 +18,7 @@
 		87E321C823679E0700ECF1C9 /* SpecialistCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87E321C723679E0700ECF1C9 /* SpecialistCell.xib */; };
 		87E32BB2235DD4A800E41727 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E32BB1235DD4A800E41727 /* MainTabBarController.swift */; };
 		87E3343B23715AE300B66129 /* ClientCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87E3343A23715AE300B66129 /* ClientCell.xib */; };
+		87E34C86238ACF1900101995 /* ProfileToShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E34C85238ACF1900101995 /* ProfileToShowViewController.swift */; };
 		87E36461234C9ACC00ADE4D2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E36460234C9ACC00ADE4D2 /* AppDelegate.swift */; };
 		87E36463234C9ACC00ADE4D2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E36462234C9ACC00ADE4D2 /* ViewController.swift */; };
 		87E36466234C9ACC00ADE4D2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87E36464234C9ACC00ADE4D2 /* Main.storyboard */; };
@@ -58,6 +59,7 @@
 		87E321C723679E0700ECF1C9 /* SpecialistCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SpecialistCell.xib; sourceTree = "<group>"; };
 		87E32BB1235DD4A800E41727 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		87E3343A23715AE300B66129 /* ClientCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ClientCell.xib; path = /Users/mihail/Desktop/iOS_findee/iOS_findee/Findee/Findee/ClientCell.xib; sourceTree = "<absolute>"; };
+		87E34C85238ACF1900101995 /* ProfileToShowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileToShowViewController.swift; sourceTree = "<group>"; };
 		87E3645D234C9ACC00ADE4D2 /* Findee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Findee.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		87E36460234C9ACC00ADE4D2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		87E36462234C9ACC00ADE4D2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 				87E737F9237C119500389527 /* SpecialistProfileCollectionView.swift */,
 				87E737FC237C11E200389527 /* ClientProfileCollectionView.swift */,
 				87E3F3F12382B8AD00FC74B8 /* UserState.swift */,
+				87E34C85238ACF1900101995 /* ProfileToShowViewController.swift */,
 			);
 			path = Findee;
 			sourceTree = "<group>";
@@ -304,6 +307,7 @@
 				87E73805237C18CF00389527 /* ClientProfileModel.swift in Sources */,
 				871B69762372E16700D995B2 /* NetworkManager.swift in Sources */,
 				87E36461234C9ACC00ADE4D2 /* AppDelegate.swift in Sources */,
+				87E34C86238ACF1900101995 /* ProfileToShowViewController.swift in Sources */,
 				87F0ACED237BE5C5007B12E2 /* ProfileViewController.swift in Sources */,
 				87E737FD237C11E200389527 /* ClientProfileCollectionView.swift in Sources */,
 				87E6FE13235A3798008960E9 /* SpecialistModel.swift in Sources */,

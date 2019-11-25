@@ -47,6 +47,9 @@
                         <rect key="frame" x="20" y="209" width="158" height="30"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <state key="normal" title="Change photo"/>
+                        <connections>
+                            <action selector="ChangePhotoTapped:" destination="t5b-b1-d62" eventType="touchUpInside" id="BC9-M5-JzR"/>
+                        </connections>
                     </button>
                     <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sIV-h4-YEg">
                         <rect key="frame" x="91" y="349" width="232" height="30"/>
@@ -74,7 +77,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <state key="normal" title="Change"/>
                         <connections>
-                            <action selector="changesTapped:" destination="t5b-b1-d62" eventType="touchUpInside" id="Nja-8P-ocy"/>
+                            <action selector="changesTapped:" destination="t5b-b1-d62" eventType="touchUpInside" id="Ks4-ve-5j7"/>
                         </connections>
                     </button>
                 </subviews>

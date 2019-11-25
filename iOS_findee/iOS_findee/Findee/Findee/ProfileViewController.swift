@@ -15,6 +15,7 @@ class ProfileViewController: UIViewController{
     let specProfileView = SpecialistProfileCollectionView()
     let clientProfileView = ClientProfileCollectionView()
     let networkManager = NetworkManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         if(UserState.shared.type == UserType.specialist)
@@ -41,6 +42,7 @@ class ProfileViewController: UIViewController{
             }
         }
         else if(UserState.shared.type == UserType.client){
+             clientProfileView.layer.zPosition = 1
             view.addSubview(clientProfileView)
             
             clientProfileView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
@@ -50,6 +52,7 @@ class ProfileViewController: UIViewController{
             clientProfileView.topAnchor.constraint(equalTo: view.topAnchor , constant: 20).isActive = true
             
             clientProfileView.heightAnchor.constraint(equalToConstant: view.frame.height - 40).isActive = true
+            
             let email = UserState.shared.log
             networkManager.loadProfileClient(email: email){ (client) in
                 self.clientProfileView.reloadData()
@@ -62,25 +65,26 @@ class ProfileViewController: UIViewController{
             
         }
         else{
-           
             
             let email = UserState.shared.log
             print("email in profile: \(email)")
             
+            clientProfileView.reloadData()
             networkManager.loadProfileClient(email: email){ (client) in
-                self.clientProfileView.reloadData()
                 print("name: \(client.fname)")
-               if client.fname != "" && client.lname != ""{
-                print("-----Here my profile: \(client)")
-                    self.clientProfileView.reloadData()
-                    self.clientProfileView.reloadData()
-                    self.clientProfileView.set(cell: client)
-               
                 
+                DispatchQueue.main.async {
+                    
+                
+               if client.fname != "" && client.lname != ""{
+                    self.clientProfileView.set(cell: client)
+                 self.clientProfileView.reloadData()
+                }
                 }
             }
-            view.addSubview(clientProfileView)
             clientProfileView.layer.zPosition = 1
+            view.addSubview(clientProfileView)
+            
             clientProfileView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
             
             clientProfileView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
@@ -88,8 +92,6 @@ class ProfileViewController: UIViewController{
             clientProfileView.topAnchor.constraint(equalTo: view.topAnchor , constant: 20).isActive = true
             
             clientProfileView.heightAnchor.constraint(equalToConstant: view.frame.height - 40).isActive = true
-            clientProfileView.reloadData()
-            
         }
         
     }

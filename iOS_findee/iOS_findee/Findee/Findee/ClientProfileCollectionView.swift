@@ -50,7 +50,6 @@ class ClientProfileCollectionView: UICollectionView, UICollectionViewDelegate, U
         cellProf.phoneTxtbx.text = cell.phone
         cellProf.emailTxtbx.text = cell.email
         cellProf.profImg.image = cell.img
-        
         return cellProf
     }
     

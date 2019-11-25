@@ -48,7 +48,6 @@ class SpecialistCollectionView: UICollectionView, UICollectionViewDelegate, UICo
         cell.categoryLabel.text = cells[indexPath.row].category
         cell.namesLabel.text = cells[indexPath.row].lname + " " +  cells[indexPath.row].fname + " " + cells[indexPath.row].oname
         cell.feedbackCount.text = cells[indexPath.row].feedback
-        
         return cell
     }
     
@@ -60,6 +59,10 @@ class SpecialistCollectionView: UICollectionView, UICollectionViewDelegate, UICo
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    
+    
+
 }
 
 /*

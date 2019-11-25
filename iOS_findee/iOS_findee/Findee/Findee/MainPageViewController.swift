@@ -12,6 +12,20 @@ import FirebaseAuth
 import FirebaseDatabase
 import FirebaseStorage
 //var ref: DatabaseReference!
+final class MainPageDelegate:MainPageViewController
+{
+    func profileButtonDidTapped(sender: Any)
+    {
+        let strBrd = UIStoryboard(name: "Main", bundle: Bundle.main)
+        guard let profileVC = strBrd.instantiateViewController(withIdentifier: "ProfileToShow") as?
+            ProfileToShowViewController else {
+                return
+        }
+    present(profileVC, animated: true, completion: nil)
+        
+      }
+    
+}
   
 var specs = [SpecialistModel]()
 var clients = [ClientModel]()
@@ -40,9 +54,10 @@ class MainPageViewController: UIViewController {
         //fetching specialist or/and users from DB
         
         switch (userType) {
-        case .specialist:
+
+        case .client:
             view.addSubview(SpecCollectionView)
-            
+           
             SpecCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
             
             SpecCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
@@ -64,7 +79,7 @@ class MainPageViewController: UIViewController {
             }
             
             
-        case .client:
+        case .specialist:
            
             view.addSubview(ClCollectionView)
             
@@ -82,10 +97,13 @@ class MainPageViewController: UIViewController {
             networkManager.loadDataClients { (users) in
                 self.ClCollectionView.reloadData()
                 if !users.isEmpty{
-                    
-                    
-                    self.ClCollectionView.reloadData()
+                    DispatchQueue.main.async {
+                        
+                   
                     self.ClCollectionView.set(cells: users)
+                         self.ClCollectionView.reloadData()
+                        
+                    }
                 }
                 
             }
@@ -103,13 +121,15 @@ class MainPageViewController: UIViewController {
             
             searchField.layer.zPosition = 1
             networkManager.loadDataSpecialists { (specs) in
-                self.SpecCollectionView.reloadData()
+                DispatchQueue.main.async {
+                    
+              
                 if !specs.isEmpty{
-                     self.SpecCollectionView.reloadData()
-                    self.SpecCollectionView.reloadData()
                     self.SpecCollectionView.set(cells: specs)
+                     self.SpecCollectionView.reloadData()
+                    
+                    }
                 }
-                
             }
             break
             
@@ -137,4 +157,5 @@ class MainPageViewController: UIViewController {
     }
     
 }
+
 

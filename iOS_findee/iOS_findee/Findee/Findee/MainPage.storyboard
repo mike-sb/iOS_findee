@@ -69,12 +69,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bkK-qx-Lrq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6721.739130434783" y="874.55357142857144"/>
+            <point key="canvasLocation" x="5806" y="875"/>
         </scene>
         <!--Profile-->
         <scene sceneID="Te0-gY-KfG">
             <objects>
-                <viewController title="Profile" id="SKM-VJ-R5k" customClass="ProfileViewController" customModule="Findee" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="ProfileViewController" storyboardIdentifier="ProfileViewController" title="Profile" id="SKM-VJ-R5k" customClass="ProfileViewController" customModule="Findee" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0ip-Hd-67w">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

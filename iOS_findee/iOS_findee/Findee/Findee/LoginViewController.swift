@@ -68,7 +68,6 @@ class LoginViewController: UIViewController {
                 
                 group.enter()
                 networkManager.loadDataClients{ (users) in
-                    self.view.layoutIfNeeded()
                     if(!users.isEmpty)
                     {
                         group.leave()
@@ -81,10 +80,11 @@ class LoginViewController: UIViewController {
                 
                 group.enter()
                 networkManager.loadDataSpecialists{ (specs) in
-                    group.leave()
+                    
                     self.view.layoutIfNeeded()
                     if(!specs.isEmpty)
                     {
+                        group.leave()
                         self.view.layoutIfNeeded()
                         all.specialist = specs
                         flag2 = true
@@ -189,6 +189,7 @@ class LoginViewController: UIViewController {
     
     private func navToMainPageView(mail: String)
     {
+    
         let mainStrBrd = UIStoryboard(name: "MainPage", bundle: Bundle.main)
         guard let mainNavigationVC = mainStrBrd.instantiateViewController(withIdentifier: "MainTabBarController") as?
             MainTabBarController else {

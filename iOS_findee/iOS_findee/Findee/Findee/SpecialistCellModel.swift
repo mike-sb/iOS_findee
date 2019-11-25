@@ -30,6 +30,7 @@ class SpecialistCellModel: UICollectionViewCell{
     @IBOutlet weak var feedbackCount: UILabel!
     @IBOutlet weak var ratingImg: UIImageView!
     
+    let delegate = MainPageDelegate()
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -97,8 +98,11 @@ break
     }
     
     @IBAction func profileDidTap(_ sender: Any) {
+        print("---Profile tapped---")
+        self.delegate.profileButtonDidTapped(sender: sender)
+       
        //goto profile of specialist
-        referen.child("findee-32534").observe(.childAdded, with: {(snapshot) in
+      /*  referen.child("findee-32534").observe(.childAdded, with: {(snapshot) in
             let val = snapshot.value as? NSDictionary
             var user = SpecialistModel(job: "", rating: 0, img: UIImage(named: "Adv1")!, description: "", price: "", fname: "", lname: "", oname: "", category: "", feedback: "", email: "", phone: "", type: "specialist")
             user.category = val?["category"] as? String ?? ""
@@ -112,6 +116,8 @@ break
             user.feedback = val?["feedback"] as? String ?? ""
             user.job = val?["job"] as? String ?? ""
            // self.users.append(user)
-        })    }
+        })
+ */
+ }
 }
 
