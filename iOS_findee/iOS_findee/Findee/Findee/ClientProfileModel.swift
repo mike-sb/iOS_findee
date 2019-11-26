@@ -24,7 +24,28 @@ class ClientProfileModel: UICollectionViewCell {
     let networkManager = NetworkManager()
     override func awakeFromNib() {
         super.awakeFromNib()
+        if let button = changeInfoBtn{
+        self.contentView.addSubview(button)
+        }
+        if let button = changeProfImgBtn{
+            self.contentView.addSubview(button)
+        }
+        if let txt = fnameTxtbx{
+                self.contentView.addSubview(txt)
+        }
+        if let txt = lnameTxtbx{
+              self.contentView.addSubview(txt)        }
+        if let txt = patronTxtbx{
+              self.contentView.addSubview(txt)        }
+        if let txt = emailTxtbx{
+              self.contentView.addSubview(txt)        }
+        if let txt = phoneTxtbx{
+              self.contentView.addSubview(txt)        }
+        if let txt = passwrdTxtbx{
+              self.contentView.addSubview(txt)        }
     }
+    
+    
     
     func fillCell(with model: ClientModel)
     {
@@ -41,7 +62,7 @@ class ClientProfileModel: UICollectionViewCell {
     }
     @IBAction func changesTapped(_ sender: Any) {
         print("tapped");
-         var user = ClientModel(fname: fnameTxtbx.text!, lname: lnameTxtbx.text!, oname: patronTxtbx.text!, question: "", img:  profImg.image!, email: emailTxtbx.text!, type: "client", phone: phoneTxtbx.text!)
+         var user = ClientModel(fname: fnameTxtbx.text!, lname: lnameTxtbx.text!, oname: patronTxtbx.text!, question: "", img:  profImg.image!, email: emailTxtbx.text!, type: UserState.shared.getStrType(), phone: phoneTxtbx.text!)
         print("changes tapped: \(user)")
         networkManager.saveProfileClientChanges(email: UserState.shared.log, user: user){
             (fl) in
@@ -49,6 +70,7 @@ class ClientProfileModel: UICollectionViewCell {
             if fl
             {
                 print("okkkk")
+                
             }
             else{
                 print("smthing went wrong")

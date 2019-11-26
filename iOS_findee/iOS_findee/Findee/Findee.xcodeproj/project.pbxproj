@@ -58,7 +58,7 @@
 		87E321C523679D6300ECF1C9 /* MainPage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainPage.storyboard; sourceTree = "<group>"; };
 		87E321C723679E0700ECF1C9 /* SpecialistCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SpecialistCell.xib; sourceTree = "<group>"; };
 		87E32BB1235DD4A800E41727 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
-		87E3343A23715AE300B66129 /* ClientCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ClientCell.xib; path = /Users/mihail/Desktop/iOS_findee/iOS_findee/Findee/Findee/ClientCell.xib; sourceTree = "<absolute>"; };
+		87E3343A23715AE300B66129 /* ClientCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ClientCell.xib; sourceTree = "<group>"; };
 		87E34C85238ACF1900101995 /* ProfileToShowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileToShowViewController.swift; sourceTree = "<group>"; };
 		87E3645D234C9ACC00ADE4D2 /* Findee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Findee.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		87E36460234C9ACC00ADE4D2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
