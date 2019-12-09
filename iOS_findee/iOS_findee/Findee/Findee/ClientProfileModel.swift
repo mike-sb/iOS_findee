@@ -11,23 +11,38 @@ import UIKit
 class ClientProfileModel: UICollectionViewCell {
         static let reuseID = "ClientProfileModel"
     
+    @IBOutlet weak var addQuestion: UIButton!
     @IBOutlet weak var profImg: UIImageView!
     @IBOutlet weak var fnameTxtbx: UITextField!
     @IBOutlet weak var lnameTxtbx: UITextField!
     @IBOutlet weak var patronTxtbx: UITextField!
     @IBOutlet weak var changeProfImgBtn: UIButton!
     @IBOutlet weak var emailTxtbx: UITextField!
+    let deco = Decoration()
    
+    @IBOutlet weak var errLable: UILabel!
     @IBOutlet weak var passwrdTxtbx: UITextField!
     @IBOutlet weak var phoneTxtbx: UITextField!
     @IBOutlet weak var changeInfoBtn: UIButton!
     let networkManager = NetworkManager()
     override func awakeFromNib() {
         super.awakeFromNib()
-        if let button = changeInfoBtn{
-        self.contentView.addSubview(button)
+        if var btn = addQuestion{
+            btn = deco.Btn(btn: btn)
+            self.contentView.addSubview(btn)
         }
-        if let button = changeProfImgBtn{
+        if var img = profImg{
+            img = deco.img(img: self.profImg)
+            self.contentView.addSubview(img)
+        }
+       
+        
+        if var button = changeInfoBtn{
+            button = deco.Btn(btn: button)
+            self.contentView.addSubview(button)
+        }
+        if var button = changeProfImgBtn{
+             button = deco.Btn(btn: button)
             self.contentView.addSubview(button)
         }
         if let txt = fnameTxtbx{
@@ -55,6 +70,10 @@ class ClientProfileModel: UICollectionViewCell {
         emailTxtbx.text = model.email
         phoneTxtbx.text = model.phone
         
+    }
+    
+    @IBAction func addQuestionTapped(_ sender: Any) {
+        print("tapped")
     }
     
     @IBAction func ChangePhotoTapped(_ sender: Any) {

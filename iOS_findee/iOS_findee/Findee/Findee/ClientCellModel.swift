@@ -15,9 +15,11 @@ class ClientCellModel: UICollectionViewCell {
     @IBOutlet weak var namesLabel: UILabel!
     @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet weak var dialogBtn: UIButton!
+    let deco = Decoration()
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        clientImg = deco.img(img: clientImg)
         // Initialization code
     }
 

@@ -40,7 +40,9 @@
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9sO-UI-JJi">
                                                 <rect key="frame" x="65" y="0.0" width="65" height="30"/>
-                                                <state key="normal" title="Профиль"/>
+                                                <state key="normal" title="Профиль">
+                                                    <color key="titleShadowColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                </state>
                                                 <connections>
                                                     <action selector="profileDidTap:" destination="M7K-vz-Lj0" eventType="touchUpInside" id="NoN-Lt-fOA"/>
                                                 </connections>

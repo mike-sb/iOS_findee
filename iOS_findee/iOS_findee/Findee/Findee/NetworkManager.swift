@@ -89,8 +89,11 @@ final class NetworkManager{
                     
                     for document in querySnapshot!.documents {
                         print("\(document.documentID) => \(document.data())")
-                        let val = document.data() as? NSDictionary
                         
+                        let val = document.data() as? NSDictionary
+                       let ask = val?["question"] as? String
+                        if(ask != "")
+                        {
                         var user = ClientModel(fname: "", lname: "", oname: "", question: "", img:  UIImage(named: "Adv1")!, email: "", type: "client", phone: "")
                         
                         user.fname = val?["fname"] as? String ?? ""
@@ -114,6 +117,7 @@ final class NetworkManager{
                         
                         
                         clients.append(user)
+                        }
                     }
                     completion(users)
                     

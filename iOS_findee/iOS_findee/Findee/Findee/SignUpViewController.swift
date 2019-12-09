@@ -48,11 +48,20 @@ class SignUpViewController: UIViewController {
     
     @IBOutlet weak var corpFName: UITextField!
     
+    @IBOutlet weak var confirmSpecBtn: UIButton!
     
     @IBOutlet weak var corpLName: UITextField!
     
+    @IBOutlet weak var confirmBtn: UIButton!
+    
+    @IBOutlet weak var regSpecBtn: UIButton!
+    var deco = Decoration()
     override func viewDidLoad() {
         super.viewDidLoad()
+        confirmBtn = deco.Btn(btn: confirmBtn)
+        confirmSpecBtn = deco.Btn(btn: confirmSpecBtn)
+        regSpecBtn = deco.Btn(btn: regSpecBtn)
+       
         errLabel.alpha = 0
 
     }

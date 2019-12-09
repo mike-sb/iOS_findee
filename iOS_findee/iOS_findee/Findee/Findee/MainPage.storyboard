@@ -46,6 +46,21 @@
             </objects>
             <point key="canvasLocation" x="5777" y="173"/>
         </scene>
+        <!--Profile To Show View Controller-->
+        <scene sceneID="zv5-WL-U7V">
+            <objects>
+                <viewController restorationIdentifier="profileToShow" storyboardIdentifier="profileToShow" id="D48-Mz-I17" customClass="ProfileToShowViewController" customModule="Findee" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="AkY-6s-Sif">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="qji-Qj-i1e"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wKk-b1-LKs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6543" y="174"/>
+        </scene>
         <!--Messages-->
         <scene sceneID="Qa0-xh-Q0P">
             <objects>
@@ -93,6 +108,9 @@
                             </button>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="logOutBtn" destination="uVC-Gn-SeN" id="Kcn-nB-jpg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wcN-mo-qwf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -12,24 +12,15 @@ import FirebaseAuth
 import FirebaseDatabase
 import FirebaseStorage
 //var ref: DatabaseReference!
-final class MainPageDelegate:MainPageViewController
+protocol MainPageDelegate
 {
-    func profileButtonDidTapped(sender: Any)
-    {
-        let strBrd = UIStoryboard(name: "Main", bundle: Bundle.main)
-        guard let profileVC = strBrd.instantiateViewController(withIdentifier: "ProfileToShow") as?
-            ProfileToShowViewController else {
-                return
-        }
-    present(profileVC, animated: true, completion: nil)
-        
-      }
+    func profileButtonDidTapped(cell: SpecialistModel)
     
 }
   
 var specs = [SpecialistModel]()
 var clients = [ClientModel]()
-class MainPageViewController: UIViewController {
+class MainPageViewController: UIViewController, MainPageDelegate {
     
     //masorny
 
@@ -50,12 +41,13 @@ class MainPageViewController: UIViewController {
         super.viewWillAppear(animated)
         view.addSubview(SpecCollectionView)
         userType = (UserState.shared.type)!
-      
         //fetching specialist or/and users from DB
         
         switch (userType) {
 
         case .client:
+           
+           SpecCollectionView.setDelegate(delegate: self)
             view.addSubview(SpecCollectionView)
            
             SpecCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
@@ -67,11 +59,13 @@ class MainPageViewController: UIViewController {
             SpecCollectionView.heightAnchor.constraint(equalToConstant: view.frame.height - searchField.frame.height - 20).isActive = true
             
             searchField.layer.zPosition = 1
+            
             networkManager.loadDataSpecialists { (specs) in
              
                 if !specs.isEmpty{
                     DispatchQueue.main.async {
-                          self.SpecCollectionView.set(cells: specs)
+                        
+                        self.SpecCollectionView.set(cells: specs)
                           self.SpecCollectionView.reloadData()
                     }
                 }
@@ -99,7 +93,7 @@ class MainPageViewController: UIViewController {
                 if !users.isEmpty{
                     DispatchQueue.main.async {
                         
-                   
+                  
                     self.ClCollectionView.set(cells: users)
                          self.ClCollectionView.reloadData()
                         
@@ -109,6 +103,8 @@ class MainPageViewController: UIViewController {
             }
            
         case .admin://///vremenno
+            
+          SpecCollectionView.setDelegate(delegate:  self)
             view.addSubview(SpecCollectionView)
             
             SpecCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
@@ -125,6 +121,7 @@ class MainPageViewController: UIViewController {
                     
               
                 if !specs.isEmpty{
+            //        let delegate = MainPageDelegate()
                     self.SpecCollectionView.set(cells: specs)
                      self.SpecCollectionView.reloadData()
                     
@@ -156,6 +153,40 @@ class MainPageViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     
-}
+   
+    
+    func profileButtonDidTapped(cell: SpecialistModel)
+    {
+        
+     /*   let alert = UIAlertController(title: "Specialist", message: "some message" , preferredStyle: .actionSheet)
+        let action = UIAlertAction(title: "Ok", style: .default) { (action) in
+            print("def")
+        }
+        alert.addAction(action)
+     //   alert.modalPresentationStyle = .popover
+        alert.modalPresentationStyle = .fullScreen
+        //alert.modalPresentationStyle = .overFullScreen
+        //alert.modalPresentationStyle = .pageSheet
+        
+        present(alert, animated: true, completion: nil)
+        */
+        
+        
+         print("tapped")
+         let strBrd = UIStoryboard(name: "MainPage", bundle: Bundle.main)
+         guard let profileVC = strBrd.instantiateViewController(withIdentifier: "profileToShow") as?
+         ProfileToShowViewController else {
+         return
+         }
+       profileVC.toShow = true
+        profileVC.cell = cell
+        print("mail in show:")
+        print(cell)
+        
+        show(profileVC, sender: ProfileToShowViewController())
+        
+        
+        
+    }}
 
 

@@ -32,6 +32,7 @@ class ClientCollectionView: UICollectionView, UICollectionViewDelegate, UICollec
     
     func set(cells: [ClientModel])
     {
+        
         self.cells = cells
     }
     

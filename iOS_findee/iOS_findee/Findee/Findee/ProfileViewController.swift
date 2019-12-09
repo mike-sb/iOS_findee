@@ -11,7 +11,9 @@ import UIKit
 import CoreData
 
 class ProfileViewController: UIViewController{
- 
+ let deco = Decoration()
+    
+    @IBOutlet weak var logOutBtn: UIBarButtonItem!
     let specProfileView = SpecialistProfileCollectionView()
     let clientProfileView = ClientProfileCollectionView()
     let networkManager = NetworkManager()
@@ -67,7 +69,6 @@ class ProfileViewController: UIViewController{
         else{
             
             let email = UserState.shared.log
-            print("email in profile: \(email)")
             
             clientProfileView.reloadData()
             networkManager.loadProfileClient(email: email){ (client) in

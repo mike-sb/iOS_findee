@@ -9,16 +9,71 @@
 import UIKit
 import CoreData
 
-class ProfileToShowViewController: UIViewController {
+protocol ToShowDelegate
+{
+   func cancelDidTapped()
+    
+}
+
+class ProfileToShowViewController: UIViewController, ToShowDelegate {
 
     let specProfileView = SpecialistProfileCollectionView()
     let networkManager = NetworkManager()
-
+    let toShowView = ToShowCollectionView()
+     var cell = SpecialistModel(job: "", rating: 0, img: UIImage(named: "Adv1")!, description: "", price: "", fname: "", lname: "", oname: "", category: "", feedback: "", email: "", phone: "", type: "specialist")
+    var mail = ""
+    var toShow = false
+    
+    func cancelDidTapped()
+    {
+        dismiss(animated: true, completion: nil)
+    }
+    
     override func viewDidLoad() {
+        print("2")
         super.viewDidLoad()
-
-        view.addSubview(specProfileView)
+        toShowView.setDelegate(del: self)
+        toShowView.set(cell: cell)
+        toShowView.reloadData()
+        view.addSubview(toShowView)
+        toShowView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         
+        toShowView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        
+        toShowView.topAnchor.constraint(equalTo: view.topAnchor , constant: 20).isActive = true
+        
+        toShowView.heightAnchor.constraint(equalToConstant: view.frame.height  - 40).isActive = true
+
+            
+           
+            print("cell: ")
+            print(cell)
+        
+        /*
+            networkManager.loadProfileSpecialists(email: mail) { (spec) in
+               
+                if spec.fname != ""&&spec.lname != ""{
+        
+                DispatchQueue.main.async{
+                    
+                    print("here email: ")
+                    print(spec.email)
+                    self.toShowView.set(cell: spec)
+                    self.toShowView.reloadData()
+                    
+                    }
+                }
+                else
+                {
+                print(spec)
+                }
+ 
+            }
+            */
+       /* else{
+            print("kk")
+        view.addSubview(specProfileView)
+    
         specProfileView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         
         specProfileView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
@@ -32,10 +87,13 @@ class ProfileToShowViewController: UIViewController {
             self.specProfileView.reloadData()
             if spec.fname != ""&&spec.lname != ""{
                 self.specProfileView.reloadData()
+             
                 self.specProfileView.set(cell: spec)
             }
             
-        }    }
+        }
+        }*/
+        }
     
 
     /*

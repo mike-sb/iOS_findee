@@ -20,23 +20,35 @@ class SpecialistCellModel: UICollectionViewCell{
     @IBOutlet weak var profileImg: UIImageView!
     @IBOutlet weak var namesLabel: UILabel!
     @IBOutlet weak var categoryLabel: UILabel!
-    
+    var deco = Decoration()
     @IBOutlet weak var feedbackLabel: UILabel!
     @IBOutlet weak var ratingLabel: UILabel!
-    
+    var email:String = ""
     @IBOutlet weak var dialogBtn: UIButton!
     @IBOutlet weak var profileBtn: UIButton!
 
     @IBOutlet weak var feedbackCount: UILabel!
     @IBOutlet weak var ratingImg: UIImageView!
     
-    let delegate = MainPageDelegate()
+     var delegate: MainPageDelegate?
+    
+     var cellToShow = SpecialistModel(job: "", rating: 0, img: UIImage(named: "Adv1")!, description: "", price: "", fname: "", lname: "", oname: "", category: "", feedback: "", email: "", phone: "", type: "specialist")
+
     override func awakeFromNib() {
         super.awakeFromNib()
+          profileImg = deco.img(img: profileImg)
+       dialogBtn = deco.Btn(btn: dialogBtn)
+        profileBtn = deco.Btn(btn: profileBtn)
+    }
+    
+    func setDelegate(_delegate: MainPageDelegate)
+    {
+        delegate = _delegate
     }
     
     func fillCell(with model: SpecialistModel) {
       profileImg.image = model.img
+      
         namesLabel.text = model.lname + " " + model.fname + " " + model.oname
         categoryLabel.text = model.category
         feedbackCount.text = model.feedback
@@ -99,8 +111,9 @@ break
     
     @IBAction func profileDidTap(_ sender: Any) {
         print("---Profile tapped---")
-        self.delegate.profileButtonDidTapped(sender: sender)
-       
+        if delegate != nil{
+        self.delegate?.profileButtonDidTapped(cell: cellToShow)
+        }
        //goto profile of specialist
       /*  referen.child("findee-32534").observe(.childAdded, with: {(snapshot) in
             let val = snapshot.value as? NSDictionary

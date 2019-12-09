@@ -12,7 +12,7 @@ class SpecialistProfileCollectionView: UICollectionView, UICollectionViewDelegat
     
     var cell = SpecialistModel(job: "", rating: 0, img: UIImage(named: "Adv1")!, description: "", price: "", fname: "", lname: "", oname: "", category: "", feedback: "", email: "", phone: "", type: "specialist")
     let customIdentifier = "ProfileSpecialist"
-    
+    var toShow: Bool = false
     init()
     {
         let layout = UICollectionViewFlowLayout()
@@ -23,11 +23,15 @@ class SpecialistProfileCollectionView: UICollectionView, UICollectionViewDelegat
         backgroundColor = .white
         translatesAutoresizingMaskIntoConstraints = false
         
-        
         register(UINib.init(nibName: customIdentifier, bundle: nil), forCellWithReuseIdentifier: SpecialistProfileModel.reuseID)
         
     }
     
+    func profToShow()
+    {
+        toShow = true
+        print(toShow)
+    }
     
     func set(cell: SpecialistModel)
     {
@@ -50,7 +54,6 @@ class SpecialistProfileCollectionView: UICollectionView, UICollectionViewDelegat
         cellProf.descriptionLable.text = cell.description
         cellProf.phoneTxtbx.text = cell.phone
         cellProf.profImg.image = cell.img
-        
         return cellProf
     }
     

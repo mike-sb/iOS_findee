@@ -90,8 +90,10 @@
                     <navigationItem key="navigationItem" id="MMF-6r-RN6"/>
                     <connections>
                         <outlet property="emailText" destination="dC2-a0-RCN" id="NC0-T6-kFd"/>
+                        <outlet property="enterBtn" destination="IJt-6k-UX8" id="YTa-R2-eWg"/>
                         <outlet property="errLabel" destination="kFM-YT-VcX" id="c9a-ZQ-rIT"/>
                         <outlet property="passwordText" destination="tLl-4s-ooJ" id="YT9-m4-OPW"/>
+                        <outlet property="regBtn" destination="T9s-6e-Ugu" id="N7c-CL-pQn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -238,7 +240,9 @@
                         <outlet property="clientLName" destination="Xt4-kQ-Ifg" id="0aO-CP-YhY"/>
                         <outlet property="clientPassword" destination="qwC-m9-TiM" id="vRU-Hk-Ltz"/>
                         <outlet property="clientRegion" destination="7No-fm-ORz" id="ZMX-hj-3nq"/>
+                        <outlet property="confirmBtn" destination="Z4b-Hh-W2G" id="lZH-0K-tit"/>
                         <outlet property="errLabel" destination="yhT-fS-OwK" id="YLE-G6-GMt"/>
+                        <outlet property="regSpecBtn" destination="5hC-Ya-qLD" id="zVe-Yk-Hbi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bep-kg-oz9" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -361,6 +365,7 @@
                     <tabBarItem key="tabBarItem" title="Item" id="ebe-bF-izs"/>
                     <navigationItem key="navigationItem" title="Исполнитель" id="Fs0-oF-pKo"/>
                     <connections>
+                        <outlet property="confirmSpecBtn" destination="NKv-PV-IIe" id="yMa-V2-EMd"/>
                         <outlet property="corpCategory" destination="COK-cg-546" id="0Zb-9I-qvq"/>
                         <outlet property="corpConfirm" destination="o0k-bQ-snm" id="ACl-Q1-U0i"/>
                         <outlet property="corpEmail" destination="0tB-IP-vTJ" id="ZJu-ld-6ss"/>
@@ -393,21 +398,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GF3-QM-AZu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3006" y="121"/>
-        </scene>
-        <!--Profile To Show View Controller-->
-        <scene sceneID="YPJ-MD-QUe">
-            <objects>
-                <viewController restorationIdentifier="ProfileToShow" storyboardIdentifier="ProfileToShow" id="mbR-hm-fTA" customClass="ProfileToShowViewController" customModule="Findee" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" tag="1" contentMode="scaleToFill" id="ZXf-aA-vUm">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="Rle-EK-1Gz"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="XTo-se-Rr7" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="5584" y="106"/>
         </scene>
         <!--MainTabBarController-->
         <scene sceneID="GRd-VB-3je">

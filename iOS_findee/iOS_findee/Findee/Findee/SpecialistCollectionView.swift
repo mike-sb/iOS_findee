@@ -9,10 +9,9 @@
 import UIKit
 
 class SpecialistCollectionView: UICollectionView, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    
+    var mainDelegate: MainPageDelegate?
     var cells = [SpecialistModel]()
     let customIdentifier = "SpecialistCell"
-    
     init()
     {
         let layout = UICollectionViewFlowLayout()
@@ -32,9 +31,14 @@ class SpecialistCollectionView: UICollectionView, UICollectionViewDelegate, UICo
     func set(cells: [SpecialistModel])
     {
      self.cells = cells
+    
     }
     
-    
+    func setDelegate(delegate: MainPageDelegate)
+    {
+        self.mainDelegate = delegate
+        
+    }
   
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -48,6 +52,11 @@ class SpecialistCollectionView: UICollectionView, UICollectionViewDelegate, UICo
         cell.categoryLabel.text = cells[indexPath.row].category
         cell.namesLabel.text = cells[indexPath.row].lname + " " +  cells[indexPath.row].fname + " " + cells[indexPath.row].oname
         cell.feedbackCount.text = cells[indexPath.row].feedback
+        cell.email = cells[indexPath.row].email
+        cell.cellToShow = cells[indexPath.row]
+        if mainDelegate != nil{
+        cell.delegate = mainDelegate
+        }
         return cell
     }
     

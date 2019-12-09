@@ -33,10 +33,14 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var errLabel: UILabel!
     private var networkManager = NetworkManager()
  
-
+    @IBOutlet weak var enterBtn: UIButton!
+    let deco = Decoration()
+    @IBOutlet weak var regBtn: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        regBtn = deco.Btn(btn: regBtn)
+        enterBtn = deco.Btn(btn: enterBtn)
         errLabel.alpha = 0
         let app = UIApplication.shared.delegate as! AppDelegate
         
