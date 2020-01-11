@@ -121,7 +121,7 @@ class LoginViewController: UIViewController {
                 
                 }
             }
-            self.navToMainPageView(mail: UserState.shared.log!)
+            self.navToMainPageView(mail: emailText.text!)
             
         }
             
