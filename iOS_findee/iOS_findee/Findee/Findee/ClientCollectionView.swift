@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import FirebaseStorage
 
 class ClientCollectionView: UICollectionView, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
@@ -44,13 +45,30 @@ class ClientCollectionView: UICollectionView, UICollectionViewDelegate, UICollec
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+   
         let cell = dequeueReusableCell(withReuseIdentifier: ClientCellModel.reuseID, for: indexPath) as! ClientCellModel
         
-        cell.clientImg.image = cells[indexPath.row].img
+    
+        let storage = Storage.storage()
+        let pathRef = storage.reference(withPath: "images/\(cells[indexPath.row].email)Photo")
+        
+        print(UserState.shared.log!)
+        
+        pathRef.getData(maxSize: 1 * 4024 * 4024) { data, error in
+            if let error = error {
+                print(error)
+                 cell.clientImg.image = UIImage(named: "Adv1")!
+            } else {
+                print(data)
+                cell.clientImg.image = UIImage(data: data!)!
+                
+            }
+        }
         cell.questionLabel.text = cells[indexPath.row].question
         cell.namesLabel.text = cells[indexPath.row].lname + " " +  cells[indexPath.row].fname + " " + cells[indexPath.row].oname
         
         return cell
+
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

@@ -9,17 +9,27 @@
 import Foundation
 import UIKit
 import CoreData
+protocol ProfileImageDelegate {
+    func changeImage(sender: UIView)
+}
 
-class ProfileViewController: UIViewController{
+class ProfileViewController: UIViewController, ProfileImageDelegate{
+    func changeImage(sender: UIView) {
+         imagePicker.present(from: sender)
+    }
+
  let deco = Decoration()
     
     @IBOutlet weak var logOutBtn: UIBarButtonItem!
     let specProfileView = SpecialistProfileCollectionView()
     let clientProfileView = ClientProfileCollectionView()
     let networkManager = NetworkManager()
+    var imagePicker: ImagePicker!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.imagePicker = ImagePicker(presentationController: self, delegate: self as ImagePickerDelegate)
+        
         if(UserState.shared.type == UserType.specialist)
         {
             view.addSubview(specProfileView)
@@ -45,6 +55,7 @@ class ProfileViewController: UIViewController{
         }
         else if(UserState.shared.type == UserType.client){
              clientProfileView.layer.zPosition = 1
+            clientProfileView.setDelegate(delegate: self)
             view.addSubview(clientProfileView)
             
             clientProfileView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
@@ -69,10 +80,10 @@ class ProfileViewController: UIViewController{
         else{
             
             let email = UserState.shared.log
-            
+            clientProfileView.setDelegate(delegate: self)
             clientProfileView.reloadData()
             networkManager.loadProfileClient(email: email){ (client) in
-                print("name: \(client.fname)")
+            
                 
                 DispatchQueue.main.async {
                     
@@ -101,8 +112,6 @@ class ProfileViewController: UIViewController{
       
               if( deleteAllData("LoginFindee"))
               {
-        
-                    
                     navToLoginPage()
                 }
                 else
@@ -140,5 +149,29 @@ class ProfileViewController: UIViewController{
         
       present(loginNavigationVC,animated: true, completion: nil)
     }
+ 
+    func imageChanged(sender: Any) {
+        self.imagePicker.present(from: sender as! UIView)
+    }
+}
+
+extension ProfileViewController: ImagePickerDelegate {
     
+    func didSelect(image: UIImage?) {
+        if(UserState.shared.type == UserType.specialist)
+        {
+            
+        }
+              else if(UserState.shared.type == UserType.client){
+                clientProfileView.cell.img = image ?? UIImage(named: "Adv1")!
+            clientProfileView.reloadData()
+        }
+        else
+        {
+            clientProfileView.cell.img = image ?? UIImage(named: "Adv1")!
+            clientProfileView.reloadData()
+ 
+        }
+        
+    }
 }

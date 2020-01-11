@@ -19,14 +19,22 @@ class ClientProfileModel: UICollectionViewCell {
     @IBOutlet weak var changeProfImgBtn: UIButton!
     @IBOutlet weak var emailTxtbx: UITextField!
     let deco = Decoration()
+    var proto: ProfileImageDelegate?
    
     @IBOutlet weak var errLable: UILabel!
     @IBOutlet weak var passwrdTxtbx: UITextField!
     @IBOutlet weak var phoneTxtbx: UITextField!
     @IBOutlet weak var changeInfoBtn: UIButton!
     let networkManager = NetworkManager()
+    
+    func setDelegate(delegate: ProfileImageDelegate)
+    {
+        proto = delegate
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
+      
         if var btn = addQuestion{
             btn = deco.Btn(btn: btn)
             self.contentView.addSubview(btn)
@@ -77,8 +85,25 @@ class ClientProfileModel: UICollectionViewCell {
     }
     
     @IBAction func ChangePhotoTapped(_ sender: Any) {
-        print("Change tapped")
+        if proto != nil{
+            self.proto?.changeImage(sender: sender as! UIView)
+        }
+                 var user = ClientModel(fname: fnameTxtbx.text!, lname: lnameTxtbx.text!, oname: patronTxtbx.text!, question: "", img:  profImg.image!, email: emailTxtbx.text!, type: UserState.shared.getStrType(), phone: phoneTxtbx.text!)
+        networkManager.saveProfileClientChanges(email: UserState.shared.log, user: user){
+            (fl) in
+            
+            if fl
+            {
+                print("okkkk")
+                
+            }
+            else{
+                print("smthing went wrong")
+            }
+        }
+        
     }
+    
     @IBAction func changesTapped(_ sender: Any) {
         print("tapped");
          var user = ClientModel(fname: fnameTxtbx.text!, lname: lnameTxtbx.text!, oname: patronTxtbx.text!, question: "", img:  profImg.image!, email: emailTxtbx.text!, type: UserState.shared.getStrType(), phone: phoneTxtbx.text!)
@@ -99,3 +124,9 @@ class ClientProfileModel: UICollectionViewCell {
 }
 
 
+extension ClientProfileModel: ImagePickerDelegate {
+    
+    func didSelect(image: UIImage?) {
+        self.profImg.image = image
+    }
+}

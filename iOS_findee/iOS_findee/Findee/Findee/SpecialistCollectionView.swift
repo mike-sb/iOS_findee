@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseStorage
 
 class SpecialistCollectionView: UICollectionView, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     var mainDelegate: MainPageDelegate?
@@ -48,7 +49,19 @@ class SpecialistCollectionView: UICollectionView, UICollectionViewDelegate, UICo
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = dequeueReusableCell(withReuseIdentifier: SpecialistCellModel.reuseID, for: indexPath) as! SpecialistCellModel
         
-        cell.profileImg.image = cells[indexPath.row].img
+        let storage = Storage.storage()
+        let pathRef = storage.reference(withPath: "images/\( cells[indexPath.row].email)Photo")
+        
+        pathRef.getData(maxSize: 1 * 4024 * 4024) { data, error in
+            if let error = error {
+                print(error)
+                cell.profileImg.image = UIImage(named: "Adv1")!
+                
+            } else {
+               cell.profileImg.image = UIImage(data: data!)!
+            }
+        }
+        
         cell.categoryLabel.text = cells[indexPath.row].category
         cell.namesLabel.text = cells[indexPath.row].lname + " " +  cells[indexPath.row].fname + " " + cells[indexPath.row].oname
         cell.feedbackCount.text = cells[indexPath.row].feedback

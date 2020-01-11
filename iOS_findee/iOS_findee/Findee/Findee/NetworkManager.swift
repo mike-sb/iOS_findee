@@ -39,7 +39,7 @@ final class NetworkManager{
                         print("\(document.documentID) => \(document.data())")
                         let val = document.data() as? NSDictionary
                         
-                        var user = SpecialistModel(job: "", rating: 0, img: UIImage(named: "Adv1")!, description: "", price: "", fname: "", lname: "", oname: "", category: "", feedback: "", email: "", phone: "", type: "speciali")
+                        var user = SpecialistModel(job: "", rating: 0, img: UIImage(), description: "", price: "", fname: "", lname: "", oname: "", category: "", feedback: "", email: "", phone: "", type: "speciali")
                         
                         user.category = val?["category"] as? String ?? ""
                         user.description = val?["description"] as? String ?? ""
@@ -53,17 +53,7 @@ final class NetworkManager{
                         user.email = val?["email"] as? String ?? ""
                         
                         //downloading img for profile
-                        let pathRef = storage.reference(withPath: "images/\(val?["img"] ?? UIImage(named: "Adv1")!)")
-                        
-                        pathRef.getData(maxSize: 1 * 1024 * 1024) { data, error in
-                            if let error = error {
-                                print(error)
-                            } else {
-                                // Data for "images/island.jpg" is returned
-                                user.img = UIImage(data: data!) ?? UIImage(named: "Adv1")!
-                            }
-                        }
-                        
+                      
                         specs.append(user)
                     }
                     completion(specs)
@@ -73,7 +63,9 @@ final class NetworkManager{
                     completion([])
                 }
             }
-        }    }
+        }
+        
+    }
     
     func loadDataClients(completion: @escaping ([ClientModel])->Void){
         let conf = FirebaseService.shared.configure
@@ -94,26 +86,14 @@ final class NetworkManager{
                        let ask = val?["question"] as? String
                         if(ask != "")
                         {
-                        var user = ClientModel(fname: "", lname: "", oname: "", question: "", img:  UIImage(named: "Adv1")!, email: "", type: "client", phone: "")
+                        var user = ClientModel(fname: "", lname: "", oname: "", question: "", img:  UIImage(), email: "", type: "client", phone: "")
                         
                         user.fname = val?["fname"] as? String ?? ""
                         user.lname = val?["lname"] as? String ?? ""
                         user.oname = val?["oname"] as? String ?? ""
                         user.question = val?["question"] as? String ?? ""
                         user.email = val?["email"] as? String ?? ""
-                        //downloading img for profile
-                        user.img =/* UIImage(named: val?["email"] ) ??*/ UIImage(named: "Adv1")!
-                        
-                         /*       let pathRef = storage.reference(withPath: "images/\(val?["img"] ?? UIImage(named: "Adv1")!)")
-                         
-                         pathRef.getData(maxSize: 1 * 1024 * 1024) { data, error in
-                         if let error = error {
-                         print(error)
-                         } else {
-                         
-                         user.img = UIImage(data: data!) ?? UIImage(named: "Adv1")!
-                         }
-                         }*/
+                    
                         
                         
                         clients.append(user)
@@ -145,7 +125,7 @@ final class NetworkManager{
                         print("\(document.documentID) => \(document.data())")
                         let val = document.data() as? NSDictionary
                         
-                        var user = ClientModel(fname: "", lname: "", oname: "", question: "", img:  UIImage(named: "Adv1")!, email: "", type: "client", phone: "")
+                        var user = ClientModel(fname: "", lname: "", oname: "", question: "", img:  UIImage(), email: "", type: "client", phone: "")
                         
                         user.fname = val?["fname"] as? String ?? ""
                         user.lname = val?["lname"] as? String ?? ""
@@ -154,18 +134,7 @@ final class NetworkManager{
                         user.email = val?["email"] as? String ?? ""
                         //downloading img for profile
                //         user.img =/* UIImage(named: val?["email"] ) ??*/ UIImage(named: "Adv1")!
-                        
-                        let pathRef = storage.reference(withPath: "images/\(val?["img"] ?? UIImage(named: "Adv1")!)")
-                         
-                         pathRef.getData(maxSize: 1 * 1024 * 1024) { data, error in
-                         if let error = error {
-                         print(error)
-                         } else {
-                         
-                         user.img = UIImage(data: data!) ?? UIImage(named: "Adv1")!
-                         }
-                         }
-                        
+                
                         
                         clients.append(user)
                     }
@@ -188,7 +157,7 @@ final class NetworkManager{
                 print("Error getting documents: \(err)")
                 return
             } else {
-                var spec = SpecialistModel(job: "", rating: 0, img: UIImage(named: "Adv1")!, description: "", price: "", fname: "", lname: "", oname: "", category: "", feedback: "", email: "", phone: "", type: "specialist")
+                var spec = SpecialistModel(job: "", rating: 0, img: UIImage(), description: "", price: "", fname: "", lname: "", oname: "", category: "", feedback: "", email: "", phone: "", type: "specialist")
                 if !querySnapshot!.isEmpty {
                     
                     for document in querySnapshot!.documents {
@@ -208,24 +177,13 @@ final class NetworkManager{
                         spec.job = val?["job"] as? String ?? ""
                         spec.email = val?["email"] as? String ?? ""
                         
-                        //downloading img for profile
-                        let pathRef = storage.reference(withPath: "images/\(val?["img"] ?? UIImage(named: "Adv1")!)")
-                        
-                        pathRef.getData(maxSize: 1 * 1024 * 1024) { data, error in
-                            if let error = error {
-                                print(error)
-                            } else {
-                                // Data for "images/island.jpg" is returned
-                                spec.img = UIImage(data: data!) ?? UIImage(named: "Adv1")!
-                            }
-                        }
                         
                     }
                     completion(spec)
                     
                 }
                 else{
-                    completion(SpecialistModel(job: "", rating: 0, img: UIImage(named: "Adv1")!, description: "", price: "", fname: "", lname: "", oname: "", category: "", feedback: "", email: "", phone: "", type: "specialist"))
+                    completion(SpecialistModel(job: "", rating: 0, img: UIImage(), description: "", price: "", fname: "", lname: "", oname: "", category: "", feedback: "", email: "", phone: "", type: "specialist"))
                 }
             }
         }
@@ -243,13 +201,17 @@ final class NetworkManager{
                 return
             } else {
                
-                var user = ClientModel(fname: "", lname: "", oname: "", question: "", img:  UIImage(named: "Adv1")!, email: "", type: "client", phone: "")
+                var user = ClientModel(fname: "", lname: "", oname: "", question: "", img:  UIImage(), email: "", type: "client", phone: "")
                 
                 if !querySnapshot!.isEmpty {
                     
                     for document in querySnapshot!.documents {
+        
+                        
+                         let val = document.data() as? NSDictionary
+                     
                         print("\(document.documentID) => \(document.data())")
-                        let val = document.data() as? NSDictionary
+                       
                         
                         user.fname = val?["fname"] as? String ?? ""
                         user.lname = val?["lname"] as? String ?? ""
@@ -258,23 +220,12 @@ final class NetworkManager{
                         user.email = val?["email"] as? String ?? ""
                         user.phone = val?["phone"] as? String ?? ""
                         //downloading img for profile
-                        user.img =/* UIImage(named: val?["email"] ) ??*/ UIImage(named: "Adv1")!
-                        
-                        /*       let pathRef = storage.reference(withPath: "images/\(val?["img"] ?? UIImage(named: "Adv1")!)")
-                         
-                         pathRef.getData(maxSize: 1 * 1024 * 1024) { data, error in
-                         if let error = error {
-                         print(error)
-                         } else {
-                         
-                         user.img = UIImage(data: data!) ?? UIImage(named: "Adv1")!
-                         }
-                         }*/
+                     //   user.img =/* UIImage(named: val?["email"] ) ??*/ UIImage(named: "Adv1")!
                         
                         
+                     
                     }
                     completion(user)
-                    print("------here \(user)")
                 }
                 else{
                     completion(
@@ -292,6 +243,30 @@ final class NetworkManager{
         let conf = FirebaseService.shared.configure
         let db = Firestore.firestore()
         let storage = Storage.storage()
+        
+        let starsRef = URL(string: "images/\(user.email)Photo")
+        
+        let metadata = StorageMetadata()
+        metadata.contentType = "image/jpg"
+        
+        
+        var data = Data()
+        data = user.img.pngData()!
+        
+        if user.img != UIImage(named: "Adv1")! {
+            
+            let storeRef = storage.reference().child("images/\(user.email)Photo")
+            storeRef.putData(data,metadata: metadata,completion: {(metadata,error) in
+                guard let metadata = metadata else{
+                    print(error)
+                    return
+                }
+                print(metadata)
+            }
+            )
+        
+        }
+        
         db.collection("specialists").whereField("email", isEqualTo:  email).getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
@@ -318,7 +293,34 @@ final class NetworkManager{
     func saveProfileClientChanges(email: String?,user: ClientModel, complection: @escaping (Bool)->Void){
         let conf = FirebaseService.shared.configure
         let db = Firestore.firestore()
-        let storage = Storage.storage()
+        var fl = false
+           let storage = Storage.storage()
+
+        let starsRef = URL(string: "images/\(UserState.shared.log!)Photo")!
+    
+        let metadata = StorageMetadata()
+        metadata.contentType = "image/jpg"
+        
+
+        var data = Data()
+        data = user.img.pngData()!
+     
+        if user.img != UIImage(named: "Adv1")! {
+        
+        let storeRef = storage.reference().child("images/\(user.email)Photo")
+        storeRef.putData(data,metadata: metadata,completion: {(metadata,error) in
+        guard let metadata = metadata else{
+            print(error)
+            return
+        }
+            print(metadata)
+        }
+        )
+            fl = true
+        }
+    
+        
+        
         db.collection("users").whereField("email", isEqualTo: email).getDocuments()  { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
@@ -326,8 +328,7 @@ final class NetworkManager{
             } else {
                  if !querySnapshot!.isEmpty {
                     let doc = querySnapshot!.documents.first
-                doc?.reference.updateData(["fname":user.fname, "lname": user.lname, "oname": user.oname,
-                                           "phone": user.phone])
+                    doc?.reference.updateData(["fname":user.fname, "lname": user.lname, "oname": user.oname, "phone": user.phone, "img": fl])
                 
                     
                     complection(true)

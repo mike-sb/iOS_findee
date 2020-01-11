@@ -6,15 +6,25 @@
 //  Copyright © 2019 михаил. All rights reserved.
 //
 
+
 import UIKit
+import FirebaseFirestore
+import FirebaseDatabase
+import FirebaseStorage
 
 class ClientProfileCollectionView: UICollectionView, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    var imageDelegate: ProfileImageDelegate?
+    var cell = ClientModel(fname: "", lname: "", oname: "", question: "", img: UIImage() , email: "", type: "client", phone: "")
     
-    var cell = ClientModel(fname: "", lname: "", oname: "", question: "", img:  UIImage(named: "Adv1")!, email: "", type: "client", phone: "")
     let customIdentifier = "ProfileClient"
     
+    func setDelegate(delegate: ProfileImageDelegate)
+    {
+        imageDelegate = delegate
+    }
     init()
     {
+      
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         super.init(frame: .zero, collectionViewLayout: layout)
@@ -33,6 +43,8 @@ class ClientProfileCollectionView: UICollectionView, UICollectionViewDelegate, U
     func set(cell: ClientModel)
     {
      self.cell = cell
+        
+        
     }
     
     
@@ -50,7 +62,28 @@ class ClientProfileCollectionView: UICollectionView, UICollectionViewDelegate, U
         cellProf.phoneTxtbx.text = cell.phone
         cellProf.emailTxtbx.text = cell.email
         cellProf.profImg.image = cell.img
-        cellProf.errLable.text = "mm"
+        let storage = Storage.storage()
+        let pathRef = storage.reference(withPath: "images/\(UserState.shared.log!)Photo")
+        
+        
+        print(UserState.shared.log!)
+       
+        pathRef.getData(maxSize: 1 * 4024 * 4024) { data, error in
+            if let error = error {
+                print(error)
+              cellProf.profImg.image = UIImage(named: "Adv1")!
+            } else {
+                print(data)
+                cellProf.profImg.image = UIImage(data: data!)!
+                
+            }
+        }
+        
+    cellProf.errLable.alpha = 0
+        if (imageDelegate != nil)
+        {
+            cellProf.proto = imageDelegate
+        }
         return cellProf
     }
     
@@ -62,4 +95,5 @@ class ClientProfileCollectionView: UICollectionView, UICollectionViewDelegate, U
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+  
 }

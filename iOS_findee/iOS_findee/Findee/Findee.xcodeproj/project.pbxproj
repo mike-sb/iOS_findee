@@ -35,6 +35,7 @@
 		87E4144E2371CB8400D845E4 /* ClientModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E4144D2371CB8400D845E4 /* ClientModel.swift */; };
 		87E414502371D2C500D845E4 /* ClientCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E4144F2371D2C500D845E4 /* ClientCollectionView.swift */; };
 		87E48484234F318E0057BD2B /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E48483234F318E0057BD2B /* SettingsViewController.swift */; };
+		87E4F6D923B1195A0070BFD1 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E4F6D823B1195A0070BFD1 /* ImagePicker.swift */; };
 		87E50DC023941D1800CD0D51 /* Decoration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E50DBF23941D1800CD0D51 /* Decoration.swift */; };
 		87E545BD2359C40D005EA410 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E545BC2359C40D005EA410 /* LoginViewController.swift */; };
 		87E6BDB5236824F900AFB390 /* SpecialistCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E6BDB4236824F900AFB390 /* SpecialistCellModel.swift */; };
@@ -82,6 +83,7 @@
 		87E4144D2371CB8400D845E4 /* ClientModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientModel.swift; sourceTree = "<group>"; };
 		87E4144F2371D2C500D845E4 /* ClientCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientCollectionView.swift; sourceTree = "<group>"; };
 		87E48483234F318E0057BD2B /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		87E4F6D823B1195A0070BFD1 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		87E50DBF23941D1800CD0D51 /* Decoration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Decoration.swift; sourceTree = "<group>"; };
 		87E545BC2359C40D005EA410 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		87E6BDB4236824F900AFB390 /* SpecialistCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialistCellModel.swift; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 				87E37FF22396829E00675389 /* ProfileToShow.xib */,
 				87E37FF42396867C00675389 /* ToShowModel.swift */,
 				87E37FF82396894200675389 /* ToShowCollectionView.swift */,
+				87E4F6D823B1195A0070BFD1 /* ImagePicker.swift */,
 				87E3645E234C9ACC00ADE4D2 /* Products */,
 			);
 			path = Findee;
@@ -340,6 +343,7 @@
 				87E73803237C18A800389527 /* SpecialistProfileModel.swift in Sources */,
 				87E4144E2371CB8400D845E4 /* ClientModel.swift in Sources */,
 				87E737FA237C119500389527 /* SpecialistProfileCollectionView.swift in Sources */,
+				87E4F6D923B1195A0070BFD1 /* ImagePicker.swift in Sources */,
 				87E48484234F318E0057BD2B /* SettingsViewController.swift in Sources */,
 				87E6FE0D235A2BAD008960E9 /* LoginNavController.swift in Sources */,
 			);

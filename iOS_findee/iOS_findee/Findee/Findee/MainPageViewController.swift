@@ -88,13 +88,20 @@ class MainPageViewController: UIViewController, MainPageDelegate {
             findBtn.isHidden = true
             
             
-            networkManager.loadDataClients { (users) in
+            networkManager.loadDataClients { (usr) in
                 self.ClCollectionView.reloadData()
-                if !users.isEmpty{
+                if !usr.isEmpty{
                     DispatchQueue.main.async {
+                         var cli = [ClientModel]()
                         
-                  
-                    self.ClCollectionView.set(cells: users)
+                        for u in usr
+                        {
+                            if(u.question != "" && u.question != nil)
+                            {
+                            cli.append(u)
+                            }
+                        }
+                    self.ClCollectionView.set(cells: cli)
                          self.ClCollectionView.reloadData()
                         
                     }

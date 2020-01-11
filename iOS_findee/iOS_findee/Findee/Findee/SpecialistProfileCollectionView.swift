@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseStorage
 
 class SpecialistProfileCollectionView: UICollectionView, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
@@ -53,7 +54,21 @@ class SpecialistProfileCollectionView: UICollectionView, UICollectionViewDelegat
         cellProf.patronLable.text = cell.oname
         cellProf.descriptionLable.text = cell.description
         cellProf.phoneTxtbx.text = cell.phone
-        cellProf.profImg.image = cell.img
+     let storage = Storage.storage()
+        let pathRef = storage.reference(withPath: "images/\(UserState.shared.log!)Photo")
+        
+        print(UserState.shared.log!)
+        
+        pathRef.getData(maxSize: 1 * 4024 * 4024) { data, error in
+            if let error = error {
+                print(error)
+                cellProf.profImg.image = UIImage(named: "Adv1")!
+            } else {
+                print(data)
+                cellProf.profImg.image = UIImage(data: data!)!
+                
+            }
+        }
         return cellProf
     }
     

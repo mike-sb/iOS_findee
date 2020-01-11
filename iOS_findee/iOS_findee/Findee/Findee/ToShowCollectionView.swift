@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseStorage
 
 class ToShowCollectionView:
     UICollectionView, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -51,14 +52,27 @@ class ToShowCollectionView:
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cellProf = dequeueReusableCell(withReuseIdentifier: ToShowModel.reuseID, for: indexPath) as! ToShowModel
         
-     
-      cellProf.nameLable.text = cell.fname
+        
+        let storage = Storage.storage()
+        let pathRef = storage.reference(withPath: "images/\(cell.email)Photo")
+        
+        pathRef.getData(maxSize: 1 * 4024 * 4024) { data, error in
+            if let error = error {
+                print(error)
+                cellProf.profImg.image = UIImage(named: "Adv1")!
+                
+            } else {
+                cellProf.profImg.image = UIImage(data: data!)!
+            }
+        }
+        
+        cellProf.nameLable.text = cell.fname
        cellProf.surnameLable.text = cell.lname
         cellProf.patronLable.text = cell.oname
         cellProf.descriptionText.text = cell.description
         cellProf.phoneLable.text = cell.phone
-        cellProf.profImg.image = cell.img
-        cellProf.phoneLable.text = cell.phone
+        
+            cellProf.phoneLable.text = cell.phone
         cellProf.emailLable.text = cell.email
     cellProf.delegate = deleg
         

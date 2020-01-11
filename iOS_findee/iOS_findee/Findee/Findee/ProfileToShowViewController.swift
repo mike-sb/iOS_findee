@@ -20,7 +20,7 @@ class ProfileToShowViewController: UIViewController, ToShowDelegate {
     let specProfileView = SpecialistProfileCollectionView()
     let networkManager = NetworkManager()
     let toShowView = ToShowCollectionView()
-     var cell = SpecialistModel(job: "", rating: 0, img: UIImage(named: "Adv1")!, description: "", price: "", fname: "", lname: "", oname: "", category: "", feedback: "", email: "", phone: "", type: "specialist")
+     var cell = SpecialistModel(job: "", rating: 0, img: UIImage(), description: "", price: "", fname: "", lname: "", oname: "", category: "", feedback: "", email: "", phone: "", type: "specialist")
     var mail = ""
     var toShow = false
     
