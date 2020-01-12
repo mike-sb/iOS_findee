@@ -15,12 +15,15 @@ import FirebaseStorage
 protocol MainPageDelegate
 {
     func profileButtonDidTapped(cell: SpecialistModel)
+    func chatButtonTapped()
     
 }
   
 var specs = [SpecialistModel]()
 var clients = [ClientModel]()
 class MainPageViewController: UIViewController, MainPageDelegate {
+  
+    
     
     //masorny
 
@@ -160,26 +163,16 @@ class MainPageViewController: UIViewController, MainPageDelegate {
         // Pass the selected object to the new view controller.
     }
     
-   
+    func chatButtonTapped() {
+        
+        self.tabBarController?.selectedIndex = 2
+        
+    }
     
     func profileButtonDidTapped(cell: SpecialistModel)
     {
         
-     /*   let alert = UIAlertController(title: "Specialist", message: "some message" , preferredStyle: .actionSheet)
-        let action = UIAlertAction(title: "Ok", style: .default) { (action) in
-            print("def")
-        }
-        alert.addAction(action)
-     //   alert.modalPresentationStyle = .popover
-        alert.modalPresentationStyle = .fullScreen
-        //alert.modalPresentationStyle = .overFullScreen
-        //alert.modalPresentationStyle = .pageSheet
         
-        present(alert, animated: true, completion: nil)
-        */
-        
-        
-         print("tapped")
          let strBrd = UIStoryboard(name: "MainPage", bundle: Bundle.main)
          guard let profileVC = strBrd.instantiateViewController(withIdentifier: "profileToShow") as?
          ProfileToShowViewController else {
@@ -187,9 +180,7 @@ class MainPageViewController: UIViewController, MainPageDelegate {
          }
        profileVC.toShow = true
         profileVC.cell = cell
-        print("mail in show:")
-        print(cell)
-        
+    
         show(profileVC, sender: ProfileToShowViewController())
         
         

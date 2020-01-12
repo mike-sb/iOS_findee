@@ -22,12 +22,16 @@ class MainTabBarController: UITabBarController {
  
     override func viewDidLoad() {
         super.viewDidLoad()
+
 tabBarFnd.layer.zPosition = 1
         tabBarFnd.alpha = 1
         tabBarFnd.backgroundColor = .white
         // Do any additional setup after loading the view.
     }
- 
     
+    func setIndex(ind: Int)
+    {
+        selectedIndex = ind
+    }
 
 }

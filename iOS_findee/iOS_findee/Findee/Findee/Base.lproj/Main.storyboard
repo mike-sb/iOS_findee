@@ -252,22 +252,22 @@
         <!--CorpViewController-->
         <scene sceneID="0hp-tU-4yt">
             <objects>
-                <viewController title="CorpViewController" id="E8i-z0-J2b" customClass="SignUpViewController" customModule="Findee" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="corpViewController" storyboardIdentifier="corpViewController" title="CorpViewController" id="E8i-z0-J2b" customClass="SignUpViewController" customModule="Findee" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="PD4-ax-zXD">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="26" translatesAutoresizingMaskIntoConstraints="NO" id="EZe-9j-AW3">
-                                <rect key="frame" x="20" y="158" width="374" height="668"/>
+                                <rect key="frame" x="20" y="158" width="374" height="700"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Регистрация" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XyV-d5-88X">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="37"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="40"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="E-mail" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0tB-IP-vTJ">
-                                        <rect key="frame" x="0.0" y="63" width="374" height="37"/>
+                                        <rect key="frame" x="0.0" y="66" width="374" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="G78-9n-Egh"/>
                                         </constraints>
@@ -276,7 +276,7 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iDx-cr-PF8">
-                                        <rect key="frame" x="0.0" y="126" width="374" height="37.5"/>
+                                        <rect key="frame" x="0.0" y="132" width="374" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="ULC-OT-Eug"/>
                                         </constraints>
@@ -285,7 +285,7 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirm password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="o0k-bQ-snm">
-                                        <rect key="frame" x="0.0" y="189.5" width="374" height="37"/>
+                                        <rect key="frame" x="0.0" y="198" width="374" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="HKz-h8-Uu7"/>
                                         </constraints>
@@ -294,7 +294,7 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Region(City)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AUY-Pv-dBU">
-                                        <rect key="frame" x="0.0" y="252.5" width="374" height="37"/>
+                                        <rect key="frame" x="0.0" y="264" width="374" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="WMP-0a-cho"/>
                                         </constraints>
@@ -303,7 +303,7 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Organization" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0X3-Wj-F05">
-                                        <rect key="frame" x="0.0" y="315.5" width="374" height="37"/>
+                                        <rect key="frame" x="0.0" y="330" width="374" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="PHK-lF-Vlv"/>
                                         </constraints>
@@ -312,7 +312,7 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Category" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="COK-cg-546">
-                                        <rect key="frame" x="0.0" y="378.5" width="374" height="37"/>
+                                        <rect key="frame" x="0.0" y="396" width="374" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="oxF-A9-rPD"/>
                                         </constraints>
@@ -321,25 +321,25 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wFf-T0-LCO">
-                                        <rect key="frame" x="0.0" y="441.5" width="374" height="37"/>
+                                        <rect key="frame" x="0.0" y="462" width="374" height="40"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eCF-9r-Sd0">
-                                        <rect key="frame" x="0.0" y="504.5" width="374" height="37.5"/>
+                                        <rect key="frame" x="0.0" y="528" width="374" height="40"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YU7-Id-r7w">
-                                        <rect key="frame" x="0.0" y="568" width="374" height="37"/>
+                                        <rect key="frame" x="0.0" y="594" width="374" height="40"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="1" green="0.18722725809999999" blue="0.226009081" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NKv-PV-IIe">
-                                        <rect key="frame" x="0.0" y="631" width="374" height="37"/>
+                                        <rect key="frame" x="0.0" y="660" width="374" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="b96-9Q-jXS"/>
                                         </constraints>
@@ -374,7 +374,7 @@
                         <outlet property="corpOrg" destination="0X3-Wj-F05" id="T9B-tn-19o"/>
                         <outlet property="corpPassword" destination="iDx-cr-PF8" id="PnY-vS-JMB"/>
                         <outlet property="corpRegion" destination="AUY-Pv-dBU" id="WFZ-wx-5i9"/>
-                        <outlet property="errLabel" destination="YU7-Id-r7w" id="NKo-XJ-DYw"/>
+                        <outlet property="errLabel" destination="YU7-Id-r7w" id="7eU-23-szz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aZ0-26-6uo" userLabel="First Responder" sceneMemberID="firstResponder"/>

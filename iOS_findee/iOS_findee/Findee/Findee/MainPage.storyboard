@@ -64,7 +64,7 @@
         <!--Messages-->
         <scene sceneID="Qa0-xh-Q0P">
             <objects>
-                <viewController title="Messages" id="aRs-7s-cZF" sceneMemberID="viewController">
+                <viewController restorationIdentifier="messagesSB" storyboardIdentifier="messagesSB" title="Messages" id="aRs-7s-cZF" customClass="MessagesViewController" customModule="Findee" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Nyp-q8-0Uy">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -76,11 +76,28 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="На данный момент соощения не доступны" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ygt-Zo-aJU">
+                                <rect key="frame" x="16" y="336" width="382" height="23"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Приносим извинения" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UOG-Hs-Yg7">
+                                <rect key="frame" x="111" y="258" width="193" height="23"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="8g8-LW-353"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Сообщения" id="XEU-Pm-ycV"/>
+                    <connections>
+                        <outlet property="tbItem" destination="XEU-Pm-ycV" id="NDd-zi-PJu"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bkK-qx-Lrq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

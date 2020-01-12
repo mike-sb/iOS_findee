@@ -106,7 +106,10 @@ break
     }*/
     
     @IBAction func dialogDidTap(_ sender: Any) {
-        //goto dialog with specialist
+       if(delegate != nil)
+       {
+        self.delegate?.chatButtonTapped() 
+        }
     }
     
     @IBAction func profileDidTap(_ sender: Any) {
@@ -114,23 +117,7 @@ break
         if delegate != nil{
         self.delegate?.profileButtonDidTapped(cell: cellToShow)
         }
-       //goto profile of specialist
-      /*  referen.child("findee-32534").observe(.childAdded, with: {(snapshot) in
-            let val = snapshot.value as? NSDictionary
-            var user = SpecialistModel(job: "", rating: 0, img: UIImage(named: "Adv1")!, description: "", price: "", fname: "", lname: "", oname: "", category: "", feedback: "", email: "", phone: "", type: "specialist")
-            user.category = val?["category"] as? String ?? ""
-            user.description = val?["description"] as? String ?? ""
-            user.fname = val?["fname"] as? String ?? ""
-            user.lname = val?["lname"] as? String ?? ""
-            user.oname = val?["oname"] as? String ?? ""
-            user.price = val?["price"] as? String ?? ""
-            user.rating = val?["rating"] as? Double ?? 0
-            user.img = val?["img"] as? UIImage ?? UIImage(named: "Adv1")!
-            user.feedback = val?["feedback"] as? String ?? ""
-            user.job = val?["job"] as? String ?? ""
-           // self.users.append(user)
-        })
- */
+    
  }
 }
 

@@ -55,6 +55,7 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var confirmBtn: UIButton!
     
     @IBOutlet weak var regSpecBtn: UIButton!
+    
     var deco = Decoration()
     
     override func viewDidLoad() {
@@ -67,8 +68,11 @@ class SignUpViewController: UIViewController {
         {
         confirmSpecBtn = deco.Btn(btn: confirmSpecBtn)
         }
+        if(regSpecBtn != nil)
+        {
         regSpecBtn = deco.Btn(btn: regSpecBtn)
-       
+        }
+        
         errLabel.alpha = 0
 
     }
@@ -164,7 +168,7 @@ class SignUpViewController: UIViewController {
                 }
                 else{
                     let db = Firestore.firestore()
-                    db.collection("users").addDocument(data: ["fname": fname  , "lname": lname, "password": password,"email":email, "region": region!, "type": "client", "uid": result!.user.uid])
+                    db.collection("users").addDocument(data: ["fname": fname  , "lname": lname,"email":email, "region": region!, "type": "client", "uid": result!.user.uid])
                     {
                         (error) in
                         if (error != nil) {
