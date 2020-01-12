@@ -121,7 +121,7 @@ class ProfileViewController: UIViewController, ProfileImageDelegate{
     }
     
     private func deleteAllData(_ entity:String)->Bool {
-        let app = UIApplication.shared.delegate as! AppDelegate
+        /*let app = UIApplication.shared.delegate as! AppDelegate
         
         let context = app.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entity)
@@ -136,7 +136,22 @@ class ProfileViewController: UIViewController, ProfileImageDelegate{
         } catch let error {
             print("Detele all data in \(entity) error :", error)
             return false
+        }*/
+        
+        let context = ( UIApplication.shared.delegate as! AppDelegate ).persistentContainer.viewContext
+        let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: entity)
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetch)
+        do
+        {
+            try context.execute(deleteRequest)
+            try context.save()
+            return true
         }
+        catch
+        {
+            print ("There was an error")
+        }
+        return false
     }
 
     private func navToLoginPage()

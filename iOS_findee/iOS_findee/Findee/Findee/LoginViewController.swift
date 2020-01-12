@@ -35,6 +35,7 @@ class LoginViewController: UIViewController {
  
     @IBOutlet weak var enterBtn: UIButton!
     let deco = Decoration()
+       let group = DispatchGroup()
     @IBOutlet weak var regBtn: UIButton!
     
     override func viewDidLoad() {
@@ -66,32 +67,8 @@ class LoginViewController: UIViewController {
             
                 //view.layer.layoutIfNeeded()
                 
-                let group = DispatchGroup()
-                
-                group.enter()
-                networkManager.loadDataClients{ (users) in
-                    if(!users.isEmpty)
-                    {
-                        group.leave()
-                        all.client = users
-                        print("trueeee: \(users)")
-                
-                        
-                    }
-                }
-                
-                group.enter()
-                networkManager.loadDataSpecialists{ (specs) in
-                    
-                    self.view.layoutIfNeeded()
-                    if(!specs.isEmpty)
-                    {
-                        group.leave()
-                        self.view.layoutIfNeeded()
-                        all.specialist = specs
-                    }
-                    
-                }
+                loadSpecs()
+                loadUsers()
                
                 group.notify(queue: .main) {
                     
@@ -110,9 +87,10 @@ class LoginViewController: UIViewController {
                     else {
                         UserState.shared.type = .specialist
                     }
-                
+                }
+                if(UserState.shared.log != nil)
+                {
                 self.navToMainPageView(mail: self.emailText.text!)
-                    
                 }
             }
             
@@ -125,10 +103,42 @@ class LoginViewController: UIViewController {
             print("error", fetch_error.localizedDescription)
         }
     }
+    
+    func loadSpecs()
+    {
+        group.enter()
+        networkManager.loadDataSpecialists{ (specs) in
+            
+            if(!specs.isEmpty)
+            {
+                self.group.leave()
+                all.specialist = specs
+                 print("trueeee: \(all.specialist)")
+                
+            }
+            
+        }
+        
+    }
+    func loadUsers()
+    {
+        group.enter()
+        networkManager.loadProfileClients{ (cl) in
+
+            if(!cl.isEmpty)
+            {
+                self.group.leave()
+                all.client = cl
+                print("trueeee: \(all.client)")
+                
+                
+            }
+        }
+        
+    }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-       
-        
+ 
     }
     
     func validate(mas:[String?]) -> String?{
@@ -161,7 +171,7 @@ class LoginViewController: UIViewController {
         self.errLabel.alpha = 1
         }
         else{
-        
+           
         Firebase.Auth.auth().signIn(withEmail: email, password: password) {
             (result, error) in
             if error != nil{
@@ -171,10 +181,28 @@ class LoginViewController: UIViewController {
             else{
                 if(!self.CheckForUserNameAndPasswordMatch(login: email, password: password))
                 {
-                    self.saveLog(mail: email, pass: password, type: self.findType(specs: specs, clients: clients, email: email))
+                    print("entered")
+                
+                    self.loadUsers()
+                    self.loadSpecs()
+                    
+                    self.group.notify(queue: .main){
+                    let type = self.findType(specs: all.specialist, clients: all.client, email: email)
+                    print("specs and clients in login Tapped")
+                    print(all.specialist)
+                    print(all.client)
+                    print("type in login")
+                    print("type: \(type)")
+                    self.saveLog(mail: email, pass: password, type: type)
+                        
+                    self.navToMainPageView(mail: email)
+                    }
+                
+                    print("leave")
+                    
                 }
               
-                self.navToMainPageView(mail: email)
+                
                 
             }
         }
@@ -193,6 +221,7 @@ class LoginViewController: UIViewController {
             MainTabBarController else {
                 return
         }
+        
         let app = UIApplication.shared.delegate as! AppDelegate
         
         let context = app.persistentContainer.viewContext
@@ -212,27 +241,29 @@ class LoginViewController: UIViewController {
                     
                     print("searching type fore profile: \(type)")
                 
+                UserState.shared.log = emailText.text
+                UserState.shared.pas = passwordText.text
+                
                 if type == "admin" {
                     UserState.shared.type = .admin
                     mainNavigationVC.userType = .admin
-                    print("----type----: \(type)")
                 }
                 else if type == "client" {
                     mainNavigationVC.userType = .client
                     UserState.shared.type = .client
-                    print("----type----: \(type)")
                     
                 }
                 else {
                     mainNavigationVC.userType = .specialist
                     UserState.shared.type = .specialist
-                    print("----type----: \(type)")
+                  
                 }
                 
                 print("UserStates:")
                 print(UserState.shared.log)
                 print(UserState.shared.pas)
-                print(UserState.shared.type)            }
+                print(UserState.shared.type)
+            }
             
         }
         catch
@@ -249,12 +280,14 @@ class LoginViewController: UIViewController {
     {
         print("find type")
         var type:String = ""
+        
         for item in specs {
             if(item.email == email)
             {
                type = "specialist"
             }
         }
+        
         for item in clients {
             if(item.email == email)
             {
@@ -275,6 +308,7 @@ class LoginViewController: UIViewController {
     
     
     func saveLog(mail: String, pass: String, type: String){
+        
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         
         
@@ -290,6 +324,9 @@ class LoginViewController: UIViewController {
         catch let err as NSError {
             print("Couldnt save \(err), \(err.userInfo)")
         }
+ 
+    
+        
     }
     
     func CheckForUserNameAndPasswordMatch( login: String, password : String)->Bool
@@ -312,7 +349,7 @@ class LoginViewController: UIViewController {
                 let objectentity = result.lastObject as! LoginFindee
                 print(objectentity)
                 
-                if objectentity.login == login && objectentity.password == password
+                if (objectentity.login == login && objectentity.password == password)
                 {
                     return true
                 }

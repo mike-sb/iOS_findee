@@ -26,7 +26,6 @@ final class NetworkManager{
     func loadDataSpecialists(completion: @escaping ([SpecialistModel]) -> Void) {
         let conf = FirebaseService.shared.configure
         let db = Firestore.firestore()
-        let storage = Storage.storage()
         db.collection("specialists").getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
@@ -36,7 +35,7 @@ final class NetworkManager{
                 if !querySnapshot!.isEmpty {
                     
                     for document in querySnapshot!.documents {
-                        print("\(document.documentID) => \(document.data())")
+                       
                         let val = document.data() as? NSDictionary
                         
                         var user = SpecialistModel(job: "", rating: 0, img: UIImage(), description: "", price: "", fname: "", lname: "", oname: "", category: "", feedback: "", email: "", phone: "", type: "speciali")
@@ -77,12 +76,15 @@ final class NetworkManager{
                 return
             } else {
                 let users=[ClientModel]()
+                
                 if !querySnapshot!.isEmpty {
                     
                     for document in querySnapshot!.documents {
-                        print("\(document.documentID) => \(document.data())")
                         
                         let val = document.data() as? NSDictionary
+                        
+                        print(val)
+                        
                        let ask = val?["question"] as? String
                         if(ask != "")
                         {
@@ -112,7 +114,45 @@ final class NetworkManager{
     func loadProfileClients(completion: @escaping ([ClientModel])->Void){
         let conf = FirebaseService.shared.configure
         let db = Firestore.firestore()
-        let storage = Storage.storage()
+        db.collection("users").getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+                return
+            } else {
+                var specs = [ClientModel]()
+                if !querySnapshot!.isEmpty {
+                    
+                    for document in querySnapshot!.documents {
+                        
+                        let val = document.data() as? NSDictionary
+                        print("Values in loadProfileClients: \(val)")
+                        var user = ClientModel(fname: "", lname: "", oname: "", question: "", img:  UIImage(), email: "", type: "client", phone: "")
+                        
+                        
+                        user.fname = val?["fname"] as? String ?? ""
+                        user.lname = val?["lname"] as? String ?? ""
+                        user.oname = val?["oname"] as? String ?? ""
+                        user.question = val?["question"] as? String ?? ""
+                        user.email = val?["email"] as? String ?? ""
+                        user.phone = val?["phone"] as? String ?? ""
+                        
+                        //downloading img for profile
+                        
+                        specs.append(user)
+                    }
+                    completion(specs)
+                    
+                }
+                else{
+                    completion([])
+                }
+            }
+        }
+    }
+    
+        /*  let conf = FirebaseService.shared.configure
+        let db = Firestore.firestore()
+     
         db.collection("users").getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
@@ -122,9 +162,9 @@ final class NetworkManager{
                 if !querySnapshot!.isEmpty {
                     
                     for document in querySnapshot!.documents {
-                        print("\(document.documentID) => \(document.data())")
-                        let val = document.data() as? NSDictionary
                         
+                        let val = document.data() as? NSDictionary
+                        print("Values in loadProfileClients: \(val)")
                         var user = ClientModel(fname: "", lname: "", oname: "", question: "", img:  UIImage(), email: "", type: "client", phone: "")
                         
                         user.fname = val?["fname"] as? String ?? ""
@@ -146,10 +186,10 @@ final class NetworkManager{
                 }
             }
         }
-    }
+    }*/
     
     func loadProfileSpecialists(email: String?, completion: @escaping (SpecialistModel) -> Void) {
-        let conf = FirebaseService.shared.configure
+       let conf = FirebaseService.shared.configure
         let db = Firestore.firestore()
         let storage = Storage.storage()
         db.collection("specialists").whereField("email", isEqualTo:  email).getDocuments() { (querySnapshot, err) in
@@ -161,7 +201,7 @@ final class NetworkManager{
                 if !querySnapshot!.isEmpty {
                     
                     for document in querySnapshot!.documents {
-                        print("\(document.documentID) => \(document.data())")
+                       
                         let val = document.data() as? NSDictionary
                         
         
@@ -210,7 +250,6 @@ final class NetworkManager{
                         
                          let val = document.data() as? NSDictionary
                      
-                        print("\(document.documentID) => \(document.data())")
                        
                         
                         user.fname = val?["fname"] as? String ?? ""
