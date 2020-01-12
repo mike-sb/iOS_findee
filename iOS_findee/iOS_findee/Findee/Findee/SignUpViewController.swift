@@ -14,47 +14,27 @@ import FirebaseAuth
 class SignUpViewController: UIViewController {
     private var handle = AuthStateDidChangeListenerHandle?.self
 
-    @IBOutlet weak var clientLogin: UITextField!
+    @IBOutlet weak var emailTxtBx: UITextField!
     
-    @IBOutlet weak var clientPassword: UITextField!
+    @IBOutlet weak var passwordTxtBx: UITextField!
     
-    @IBOutlet weak var clientConfirm: UITextField!
+    @IBOutlet weak var confirmTxtBx: UITextField!
     
-    @IBOutlet weak var clientEmail: UITextField!
+    @IBOutlet weak var categoryTxtBx: UITextField!
     
-    @IBOutlet weak var clientFName: UITextField!
-   
+    @IBOutlet weak var fnameTxtBx: UITextField!
     
-    @IBOutlet weak var clientLName: UITextField!
+    @IBOutlet weak var lnameTxtBx: UITextField!
     
+    @IBOutlet weak var regionTxtBx: UITextField!
     
-    @IBOutlet weak var clientRegion: UITextField!
-    
-    @IBOutlet weak var errLabel: UILabel!
-    
-    @IBOutlet weak var corpLogin: UITextField!
-    
-    @IBOutlet weak var corpPassword: UITextField!
-    
-    @IBOutlet weak var corpConfirm: UITextField!
-   
-    @IBOutlet weak var corpEmail: UITextField!
-    
-    @IBOutlet weak var corpRegion: UITextField!
-    
-    @IBOutlet weak var corpOrg: UITextField!
-    
-    @IBOutlet weak var corpCategory: UITextField!
-    
-    @IBOutlet weak var corpFName: UITextField!
-    
-    @IBOutlet weak var confirmSpecBtn: UIButton!
-    
-    @IBOutlet weak var corpLName: UITextField!
+    @IBOutlet weak var orgTxtBx: UITextField!
     
     @IBOutlet weak var confirmBtn: UIButton!
+    @IBOutlet weak var errLabel: UILabel!
     
     @IBOutlet weak var regSpecBtn: UIButton!
+    var typeClient: Bool = true
     
     var deco = Decoration()
     
@@ -64,20 +44,59 @@ class SignUpViewController: UIViewController {
         {
         confirmBtn = deco.Btn(btn: confirmBtn)
         }
-        if(confirmSpecBtn != nil)
-        {
-        confirmSpecBtn = deco.Btn(btn: confirmSpecBtn)
-        }
+        
         if(regSpecBtn != nil)
         {
         regSpecBtn = deco.Btn(btn: regSpecBtn)
         }
         
         errLabel.alpha = 0
-
+        
+       changeToSpec()
     }
     
+    @IBAction func confirmTapped(_ sender: Any) {
+        if(typeClient)
+        {
+            confirmClientTapped()
+        }
+        else{
+            confirmSpecTapped()
+        }
+    }
+    
+    @IBAction func changeToSpectapped(_ sender: Any) {
+    if(typeClient)
+    {
+      changeToClient()
+        
+    }
+    else{
+        changeToSpec()
+        }
+     
+    }
+    func changeToClient()
+    {
 
+        regSpecBtn.setTitle("Регистрация для клиентов", for: .normal)
+        typeClient = false
+        categoryTxtBx.isEnabled = true
+        categoryTxtBx.alpha = 1
+        orgTxtBx.isEnabled = true
+        orgTxtBx.alpha = 1
+        
+    }
+    func changeToSpec()
+    {
+        regSpecBtn.setTitle("Регистрация для исполнителей", for: .normal)
+        categoryTxtBx.isEnabled = false
+        categoryTxtBx.alpha = 0
+        orgTxtBx.isEnabled = false
+        orgTxtBx.alpha = 0
+        typeClient = true
+        
+    }
     
     func isPasswordValid(_ password : String) -> Bool{
         let passwordTest = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[A-Z].*[A-Z])(?=.*[!@#$&*])(?=.*[0-9].*[0-9])(?=.*[a-z].*[a-z].*[a-z]).{8}$")
@@ -132,14 +151,14 @@ class SignUpViewController: UIViewController {
     }
    
   
-    @IBAction func confirmClientTapped(_ sender: Any) {
+    func confirmClientTapped() {
         var mass = [String?]()
-       let fname = clientFName.text?.trimmingCharacters(in: .whitespacesAndNewlines)
-        let lname = clientLName.text?.trimmingCharacters(in: .whitespacesAndNewlines)
-          let email =  clientEmail.text?.trimmingCharacters(in: .whitespacesAndNewlines)
-         let password =  clientPassword.text?.trimmingCharacters(in: .whitespacesAndNewlines)
-         let confirm = clientConfirm.text?.trimmingCharacters(in: .whitespacesAndNewlines)
-        let region = clientRegion.text?.trimmingCharacters(in: .whitespacesAndNewlines)
+       let fname = fnameTxtBx.text?.trimmingCharacters(in: .whitespacesAndNewlines)
+        let lname = lnameTxtBx.text?.trimmingCharacters(in: .whitespacesAndNewlines)
+          let email =  emailTxtBx.text?.trimmingCharacters(in: .whitespacesAndNewlines)
+         let password =  passwordTxtBx.text?.trimmingCharacters(in: .whitespacesAndNewlines)
+         let confirm = confirmTxtBx.text?.trimmingCharacters(in: .whitespacesAndNewlines)
+        let region = regionTxtBx.text?.trimmingCharacters(in: .whitespacesAndNewlines)
         mass.append(fname)
         mass.append(lname)
         mass.append(email)
@@ -153,10 +172,10 @@ class SignUpViewController: UIViewController {
          showError(str: err)
         }
         else{
-            let password = clientPassword.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-            let email = clientEmail.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-            let fname = clientFName.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-            let lname = clientLName.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+            let password = passwordTxtBx.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+            let email = emailTxtBx.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+            let fname = fnameTxtBx.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+            let lname = lnameTxtBx.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             Firebase.Auth.auth().createUser(withEmail: email, password: password){
                 (result, err) in
                 
@@ -184,18 +203,18 @@ class SignUpViewController: UIViewController {
     }
     
     
-    @IBAction func confirmOrgTapped(_ sender: Any) {
+    func confirmSpecTapped() {
         var mass = [String?]()
         
         //
-        let fname = corpFName.text?.trimmingCharacters(in: .whitespacesAndNewlines)
-        let lname = corpLName.text?.trimmingCharacters(in: .whitespacesAndNewlines)
-        let email =  corpEmail.text?.trimmingCharacters(in: .whitespacesAndNewlines)
-        let password =  corpPassword.text?.trimmingCharacters(in: .whitespacesAndNewlines)
-        let confirm = corpConfirm.text?.trimmingCharacters(in: .whitespacesAndNewlines)
-        let org = corpOrg.text?.trimmingCharacters(in: .whitespacesAndNewlines)
-        let region = corpRegion.text?.trimmingCharacters(in: .whitespacesAndNewlines)
-        let category = corpCategory.text?.trimmingCharacters(in: .whitespacesAndNewlines)
+        let fname = fnameTxtBx.text?.trimmingCharacters(in: .whitespacesAndNewlines)
+        let lname = lnameTxtBx.text?.trimmingCharacters(in: .whitespacesAndNewlines)
+        let email =  emailTxtBx.text?.trimmingCharacters(in: .whitespacesAndNewlines)
+        let password =  passwordTxtBx.text?.trimmingCharacters(in: .whitespacesAndNewlines)
+        let confirm = confirmTxtBx.text?.trimmingCharacters(in: .whitespacesAndNewlines)
+        let org = orgTxtBx.text?.trimmingCharacters(in: .whitespacesAndNewlines)
+        let region = regionTxtBx.text?.trimmingCharacters(in: .whitespacesAndNewlines)
+        let category = categoryTxtBx.text?.trimmingCharacters(in: .whitespacesAndNewlines)
         //
         
         mass.append(fname)
@@ -225,7 +244,7 @@ class SignUpViewController: UIViewController {
                 }
                 else{
                     let db = Firestore.firestore()
-                    db.collection("specialists").addDocument(data: ["fname": fname!  , "lname": lname!, "password": password!,"email":email!, "org": org!, "region": region!, "category": category!, "type": "specialist", "uid": result!.user.uid])
+                    db.collection("specialists").addDocument(data: ["fname": fname!  , "lname": lname!,"email":email!, "org": org!, "region": region!, "category": category!, "rating": 0, "description": "", "type": "specialist", "uid": result!.user.uid])
                     {
                         (error) in
                         if (error != nil) {
