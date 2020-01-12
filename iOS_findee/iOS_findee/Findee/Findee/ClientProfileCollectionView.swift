@@ -63,7 +63,7 @@ class ClientProfileCollectionView: UICollectionView, UICollectionViewDelegate, U
         cellProf.emailTxtbx.text = cell.email
         cellProf.profImg.image = cell.img
         let storage = Storage.storage()
-        let pathRef = storage.reference(withPath: "images/\(UserState.shared.log!)Photo")
+        let pathRef = storage.reference(withPath: "images/\(cell.email)Photo")
         
         
         print(UserState.shared.log!)

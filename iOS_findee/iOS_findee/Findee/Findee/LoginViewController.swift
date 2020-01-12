@@ -63,9 +63,7 @@ class LoginViewController: UIViewController {
                 UserState.shared.log = objectentity.login
                 
                 UserState.shared.pas = objectentity.password
-                
-                var flag1 = false
-                var flag2 = false
+            
                 //view.layer.layoutIfNeeded()
                 
                 let group = DispatchGroup()
@@ -77,7 +75,7 @@ class LoginViewController: UIViewController {
                         group.leave()
                         all.client = users
                         print("trueeee: \(users)")
-                        flag1 = true
+                
                         
                     }
                 }
@@ -91,20 +89,15 @@ class LoginViewController: UIViewController {
                         group.leave()
                         self.view.layoutIfNeeded()
                         all.specialist = specs
-                        flag2 = true
                     }
                     
                 }
                
                 group.notify(queue: .main) {
-                    print("users: \(all.client)")
-                    print("specs: \(all.specialist)")
                     
                     let type =  objectentity.type
                     
-                    print("searching type for profile: \(type)")
-                    print("compare: \(type=="admin")")
-                    
+                
                     if type == "admin" {
                         UserState.shared.type = .admin
                         
@@ -118,10 +111,11 @@ class LoginViewController: UIViewController {
                         UserState.shared.type = .specialist
                     }
                 
-                
+                self.navToMainPageView(mail: self.emailText.text!)
+                    
                 }
             }
-            self.navToMainPageView(mail: emailText.text!)
+            
             
         }
             
