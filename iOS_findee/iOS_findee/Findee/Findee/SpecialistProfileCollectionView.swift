@@ -58,6 +58,7 @@ class SpecialistProfileCollectionView: UICollectionView, UICollectionViewDelegat
         cellProf.patronLable.text = cell.oname
         cellProf.descriptionLable.text = cell.description
         cellProf.phoneTxtbx.text = cell.phone*/
+        
         cellProf.fillCell(with: cell)
         if(proto != nil)
         {
@@ -73,7 +74,6 @@ class SpecialistProfileCollectionView: UICollectionView, UICollectionViewDelegat
                 print(error)
                 cellProf.profImg.image = UIImage(named: "Adv1")!
             } else {
-                print(data)
                 cellProf.profImg.image = UIImage(data: data!)!
                 
             }

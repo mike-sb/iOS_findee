@@ -61,45 +61,45 @@ class SpecialistCellModel: UICollectionViewCell{
    
    
     
-    /*private func getStars(rate: Double) -> UIImage
+    /*  public func getStars(rate: Double) -> UIImage
     {
-     let ImgRate: UIImage = UIImage
+        var ImgRate: UIImage = UIImage()
     switch rate {
         case 0:
-           // ImgRate =
+           ImgRate = UIImage(named: "0.svg")
             break
         case 0.5:
-            //ImgRate =
+           ImgRate = UIImage?(named: "0_5")
             break
         case 1:
-            //ImgRate =
+            ImgRate = UIImage?(named: "1")
 break
         case 1.5:
-            //ImgRate =
+           ImgRate = UIImage?(named: "1_5")
 break
         case 2:
-            //ImgRate =
+            ImgRate = UIImage?(named: )
 break
         case 2.5:
-            //ImgRate =
+           ImgRate = UIImage?(named: )
 break
         case 3:
-            //ImgRate
+            ImgRate = UIImage?(named: )
 break
         case 3.5:
-            //ImgRate =
+           ImgRate = UIImage?(named: )
 break
         case 4:
-            //ImgRate =
+           ImgRate = UIImage?(named: )
 break
         case 4.5:
-            //ImgRate =
+            ImgRate = UIImage?(named: )
 break
         case 5:
-            //ImgRate =
+           ImgRate = UIImage?(named: )
             break
-        default:
-           // ImgRate = UIImage?(named: "")
+    default: break
+        //   ImgRate = UIImage?(named: )
         }
      
         return ImgRate
