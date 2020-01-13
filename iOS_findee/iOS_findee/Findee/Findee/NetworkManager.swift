@@ -312,7 +312,7 @@ final class NetworkManager{
                 print("Error getting documents: \(err)")
                 return
             } else {
-                var spec = SpecialistModel(job: "", rating: 0, img: UIImage(named: "Adv1")!, description: "", price: "", fname: "", lname: "", oname: "", category: "", feedback: "", email: "", phone: "", type: "specialist")
+                var spec = SpecialistModel(job: "", rating: 0, img: UIImage(), description: "", price: "", fname: "", lname: "", oname: "", category: "", feedback: "", email: "", phone: "", type: "specialist")
                 if !querySnapshot!.isEmpty {
                     let doc = querySnapshot!.documents.first
                     doc?.reference.updateData(["fname":user.fname, "lname": user.lname, "oname": user.oname,"phone": user.phone,"description":user.description, "category":user.category])

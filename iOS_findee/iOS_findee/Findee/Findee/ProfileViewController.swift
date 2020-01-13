@@ -32,7 +32,7 @@ class ProfileViewController: UIViewController, ProfileImageDelegate{
         if(UserState.shared.type == UserType.specialist)
         {
             view.addSubview(specProfileView)
-            
+            specProfileView.setDelegate(deleg: self)
            specProfileView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
             
             specProfileView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true

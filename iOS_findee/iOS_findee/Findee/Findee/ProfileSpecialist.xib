@@ -11,11 +11,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="SpecialistProfileCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="694" id="nzr-Zu-bo1" customClass="SpecialistProfileModel" customModule="Findee" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="694"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="SpecialistProfileCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="691" id="nzr-Zu-bo1" customClass="SpecialistProfileModel" customModule="Findee" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="691"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="SpecialistProfileModel" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nzr-Zu-bo1" id="bL2-gO-k7E" customClass="SpecialistProfileModel" customModule="Findee" customModuleProvider="target">
-                <rect key="frame" x="0.0" y="0.0" width="414" height="693.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="414" height="690.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wuD-XS-wbR">
@@ -25,7 +25,10 @@
                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hm9-ee-hyN">
                         <rect key="frame" x="20" y="215" width="178" height="30"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <state key="normal" title="Загрузить аватар"/>
+                        <state key="normal" title="Загрузить фото"/>
+                        <connections>
+                            <action selector="loadProfImg:" destination="nzr-Zu-bo1" eventType="touchUpInside" id="rkm-6C-ib5"/>
+                        </connections>
                     </button>
                     <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Имя" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4JY-ui-UR8">
                         <rect key="frame" x="206" y="13" width="188" height="30"/>
@@ -66,6 +69,9 @@
                         <rect key="frame" x="172" y="581" width="71" height="30"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <state key="normal" title="Изменить"/>
+                        <connections>
+                            <action selector="changesSaveTapped:" destination="nzr-Zu-bo1" eventType="touchUpInside" id="DIF-hO-BZp"/>
+                        </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Qk-Nt-EcF">
                         <rect key="frame" x="152" y="619" width="111" height="30"/>
@@ -92,6 +98,7 @@
                 <outlet property="changeInfoBtn" destination="eKC-29-tPA" id="HMM-yh-cv2"/>
                 <outlet property="changeProfImgBtn" destination="hm9-ee-hyN" id="qqV-b8-BUs"/>
                 <outlet property="descriptionLable" destination="ArE-KB-24r" id="hyd-IA-MmS"/>
+                <outlet property="emailTxtBx" destination="guR-mP-OVf" id="92g-2v-ywJ"/>
                 <outlet property="fnameLable" destination="4JY-ui-UR8" id="crg-xG-n85"/>
                 <outlet property="lnameLable" destination="CSA-ag-YdU" id="hl4-y8-JSv"/>
                 <outlet property="patronLable" destination="tSE-lf-zdn" id="Emc-JA-Q3g"/>
@@ -99,7 +106,7 @@
                 <outlet property="profImg" destination="wuD-XS-wbR" id="oRo-LH-g75"/>
                 <outlet property="uploadBtn" destination="3Qk-Nt-EcF" id="Aqm-Jc-TxY"/>
             </connections>
-            <point key="canvasLocation" x="1747.826086956522" y="115.17857142857142"/>
+            <point key="canvasLocation" x="1747.826086956522" y="114.17410714285714"/>
         </tableViewCell>
     </objects>
 </document>

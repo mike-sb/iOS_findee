@@ -10,7 +10,7 @@ import UIKit
 import FirebaseStorage
 
 class SpecialistProfileCollectionView: UICollectionView, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    
+    var proto: ProfileImageDelegate?
     var cell = SpecialistModel(job: "", rating: 0, img: UIImage(named: "Adv1")!, description: "", price: "", fname: "", lname: "", oname: "", category: "", feedback: "", email: "", phone: "", type: "specialist")
     let customIdentifier = "ProfileSpecialist"
     var toShow: Bool = false
@@ -39,6 +39,10 @@ class SpecialistProfileCollectionView: UICollectionView, UICollectionViewDelegat
         self.cell = cell
     }
     
+    func setDelegate(deleg: ProfileImageDelegate)
+    {
+        proto = deleg
+    }
     
     
     
@@ -49,11 +53,16 @@ class SpecialistProfileCollectionView: UICollectionView, UICollectionViewDelegat
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cellProf = dequeueReusableCell(withReuseIdentifier: SpecialistProfileModel.reuseID, for: indexPath) as! SpecialistProfileModel
         
-        cellProf.fnameLable.text = cell.fname
+       /* cellProf.fnameLable.text = cell.fname
         cellProf.lnameLable.text = cell.lname
         cellProf.patronLable.text = cell.oname
         cellProf.descriptionLable.text = cell.description
-        cellProf.phoneTxtbx.text = cell.phone
+        cellProf.phoneTxtbx.text = cell.phone*/
+        cellProf.fillCell(with: cell)
+        if(proto != nil)
+        {
+            cellProf.setDelegate(delegate: proto!)
+        }
      let storage = Storage.storage()
         let pathRef = storage.reference(withPath: "images/\(UserState.shared.log!)Photo")
         

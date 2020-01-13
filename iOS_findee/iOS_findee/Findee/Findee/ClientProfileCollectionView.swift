@@ -22,6 +22,7 @@ class ClientProfileCollectionView: UICollectionView, UICollectionViewDelegate, U
     {
         imageDelegate = delegate
     }
+    
     init()
     {
       
