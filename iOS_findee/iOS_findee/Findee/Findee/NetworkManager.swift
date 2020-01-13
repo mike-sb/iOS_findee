@@ -235,6 +235,7 @@ final class NetworkManager{
         let db = Firestore.firestore()
         let storage = Storage.storage()
         print("email in loader: \(email)")
+        
         db.collection("users").whereField("email", isEqualTo: email).getDocuments()  { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
@@ -367,7 +368,7 @@ final class NetworkManager{
             } else {
                  if !querySnapshot!.isEmpty {
                     let doc = querySnapshot!.documents.first
-                    doc?.reference.updateData(["fname":user.fname, "lname": user.lname, "oname": user.oname, "phone": user.phone, "img": fl])
+                    doc?.reference.updateData(["fname":user.fname, "lname": user.lname, "oname": user.oname, "phone": user.phone, "question":user.question, "img": fl])
                 
                     
                     complection(true)

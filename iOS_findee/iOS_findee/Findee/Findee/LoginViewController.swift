@@ -90,7 +90,7 @@ class LoginViewController: UIViewController {
                 }
                 if(UserState.shared.log != nil)
                 {
-                self.navToMainPageView(mail: self.emailText.text!)
+                self.navToMainPageView(mail: UserState.shared.log!)
                 }
             }
             

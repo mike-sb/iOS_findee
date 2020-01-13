@@ -21,10 +21,13 @@ class ClientProfileModel: UICollectionViewCell {
     let deco = Decoration()
     var proto: ProfileImageDelegate?
    
+    @IBOutlet weak var questionLable: UILabel!
+    @IBOutlet weak var questionArea: UITextField!
     @IBOutlet weak var errLable: UILabel!
     @IBOutlet weak var passwrdTxtbx: UITextField!
     @IBOutlet weak var phoneTxtbx: UITextField!
     @IBOutlet weak var changeInfoBtn: UIButton!
+    var profileModeDefault: Bool = true
     let networkManager = NetworkManager()
     
     func setDelegate(delegate: ProfileImageDelegate)
@@ -34,7 +37,22 @@ class ClientProfileModel: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-      
+        profileModeDefault = true
+        if var txt = questionLable
+        {
+            txt.layer.zPosition = -1
+            txt.alpha = 0
+            self.contentView.addSubview(txt)
+        }
+        if var txt = questionArea{
+            txt.layer.zPosition = -1
+            txt.isEnabled = false
+            txt.alpha = 0
+            self.contentView.addSubview(txt)
+        }
+        
+       
+        
         if var btn = addQuestion{
             btn = deco.Btn(btn: btn)
             self.contentView.addSubview(btn)
@@ -68,7 +86,49 @@ class ClientProfileModel: UICollectionViewCell {
               self.contentView.addSubview(txt)        }
     }
     
+    func changeProfileMode()
+    {
+        if(profileModeDefault)
+        {
+            changeProf(main: false,alp: 0,oth: 1)
+            addQuestion.setTitle("Назад", for: .normal)
+            changeInfoBtn.setTitle("Оставить вопрос", for: .normal)
+        }
+        else
+        {
+            changeProf(main: true, alp: 1, oth: 0)
+            addQuestion.setTitle("Добавить вопрос", for: .normal)
+            changeInfoBtn.setTitle("Изменить", for: .normal)
+        }
+    }
     
+    func changeProf(main: Bool, alp: Int, oth: Int)
+    {
+        fnameTxtbx.isEnabled = main
+        lnameTxtbx.isEnabled = main
+        patronTxtbx.isEnabled = main
+        emailTxtbx.isEnabled = main
+        phoneTxtbx.isEnabled = main
+        passwrdTxtbx.isEnabled = main
+        
+        fnameTxtbx.alpha = CGFloat(alp)
+        lnameTxtbx.alpha = CGFloat(alp)
+        patronTxtbx.alpha = CGFloat(alp)
+        emailTxtbx.alpha = CGFloat(alp)
+        phoneTxtbx.alpha = CGFloat(alp)
+        passwrdTxtbx.alpha = CGFloat(alp)
+        profImg.alpha = CGFloat(alp)
+        changeProfImgBtn.isEnabled = main
+        changeProfImgBtn.alpha = CGFloat(alp)
+        
+        questionArea.layer.zPosition = CGFloat(oth)
+        questionLable.layer.zPosition = CGFloat(oth)
+        questionLable.alpha = CGFloat(oth)
+        questionArea.alpha = CGFloat(oth)
+        questionArea.isEnabled = !main
+        
+    }
+
     
     func fillCell(with model: ClientModel)
     {
@@ -81,17 +141,19 @@ class ClientProfileModel: UICollectionViewCell {
     }
     
     @IBAction func addQuestionTapped(_ sender: Any) {
-        print("tapped")
+        changeProfileMode()
+        profileModeDefault = !profileModeDefault
+        
     }
     
     @IBAction func ChangePhotoTapped(_ sender: Any) {
         if proto != nil{
             self.proto?.changeImage(sender: sender as! UIView)
         }
+        
                  var user = ClientModel(fname: fnameTxtbx.text!, lname: lnameTxtbx.text!, oname: patronTxtbx.text!, question: "", img:  profImg.image!, email: emailTxtbx.text!, type: UserState.shared.getStrType(), phone: phoneTxtbx.text!)
-        networkManager.saveProfileClientChanges(email: UserState.shared.log, user: user){
+            networkManager.saveProfileClientChanges(email: UserState.shared.log, user: user){
             (fl) in
-            
             if fl
             {
                 print("okkkk")
@@ -105,8 +167,15 @@ class ClientProfileModel: UICollectionViewCell {
     }
     
     @IBAction func changesTapped(_ sender: Any) {
-        print("tapped");
-         var user = ClientModel(fname: fnameTxtbx.text!, lname: lnameTxtbx.text!, oname: patronTxtbx.text!, question: "", img:  profImg.image!, email: emailTxtbx.text!, type: UserState.shared.getStrType(), phone: phoneTxtbx.text!)
+        if(!profileModeDefault)
+        {
+            changeProf(main: true, alp: 1, oth: 0)
+            addQuestion.setTitle("Добавить вопрос", for: .normal)
+            changeInfoBtn.setTitle("Изменить", for: .normal)
+            
+        }
+        let que: String = questionArea.text ?? ""
+        let user = ClientModel(fname: fnameTxtbx.text!, lname: lnameTxtbx.text!, oname: patronTxtbx.text!, question: que, img:  profImg.image!, email: emailTxtbx.text!, type: UserState.shared.getStrType(), phone: phoneTxtbx.text!)
         print("changes tapped: \(user)")
         networkManager.saveProfileClientChanges(email: UserState.shared.log, user: user){
             (fl) in

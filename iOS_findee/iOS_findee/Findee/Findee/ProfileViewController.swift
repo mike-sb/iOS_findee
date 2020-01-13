@@ -12,7 +12,6 @@ import CoreData
 protocol ProfileImageDelegate {
     func changeImage(sender: UIView)
 }
-
 class ProfileViewController: UIViewController, ProfileImageDelegate{
     func changeImage(sender: UIView) {
          imagePicker.present(from: sender)

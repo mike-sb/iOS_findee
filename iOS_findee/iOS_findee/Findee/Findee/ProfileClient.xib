@@ -42,7 +42,7 @@
                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w47-tW-OaI">
                         <rect key="frame" x="20" y="281" width="158" height="30"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <state key="normal" title="Загрузить аватар"/>
+                        <state key="normal" title="Загрузить фото"/>
                         <connections>
                             <action selector="ChangePhotoTapped:" destination="t5b-b1-d62" eventType="touchUpInside" id="BC9-M5-JzR"/>
                         </connections>
@@ -75,7 +75,7 @@
                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3iA-M9-0PP">
                         <rect key="frame" x="28" y="34" width="347" height="49"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <state key="normal" title="Добавить заказ"/>
+                        <state key="normal" title="Добавить вопрос"/>
                         <connections>
                             <action selector="addQuestionTapped:" destination="t5b-b1-d62" eventType="touchUpInside" id="fCc-j0-8nT"/>
                         </connections>
@@ -95,6 +95,20 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="b2N-dP-w2N">
+                        <rect key="frame" x="51" y="319" width="312" height="179"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <nil key="textColor"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <textInputTraits key="textInputTraits"/>
+                    </textField>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Ваш вопрос:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lZu-46-P1I">
+                        <rect key="frame" x="158" y="286" width="101" height="21"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
             </tableViewCellContentView>
             <connections>
@@ -109,6 +123,8 @@
                 <outlet property="patronTxtbx" destination="AKe-xg-Hvs" id="xRF-62-xyG"/>
                 <outlet property="phoneTxtbx" destination="ogJ-Rz-1ua" id="enj-qw-tpt"/>
                 <outlet property="profImg" destination="GdF-Uz-XPv" id="lTx-97-ynp"/>
+                <outlet property="questionArea" destination="b2N-dP-w2N" id="aDi-TI-V3p"/>
+                <outlet property="questionLable" destination="lZu-46-P1I" id="bH5-U1-KVC"/>
             </connections>
             <point key="canvasLocation" x="1715.9420289855075" y="15.736607142857142"/>
         </tableViewCell>
